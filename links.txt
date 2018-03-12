@@ -4,4 +4,6 @@ https://embed.plnkr.co/plunk/hZvagQ
 
 https://github.com/primefaces/primeng-quickstart
 
+http://candordeveloper.com/2017/04/12/how-to-use-angular-cli-with-visual-studio-2017/
+
 [HMR] angular
