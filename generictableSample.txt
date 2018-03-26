@@ -1,0 +1,333 @@
+import { Component } from '@angular/core';
+import {GtConfig} from '@angular-generic-table/core';
+
+export interface RowData {
+  id: number;
+  name: string;
+  language?: string;
+  test1: string;
+  test2: string;
+  test3: string;
+  test4: string;
+  test5: string;
+  test6: string;
+  test7: string;
+  test8: string;
+  test9: string;
+  test10: string;
+  test11: string;
+  test12: string;
+  test13: string;
+  test14: string;
+  test15: string;
+  test16: string;
+  test17: string;
+  test18: string;
+  test19: string;
+  test20: string;
+}
+
+@Component({
+  selector: 'inline-editing',
+  templateUrl: './inline-editing.component.html'
+})
+export class InlineEditingComponent {
+
+  public data: Array<RowData> = [];
+  public configObject: GtConfig<RowData>;
+  public languages: Array<string> = ['Albanian', 'Amharic', 'Aymara', 'Bulgarian', 'Dhivehi', 'Estonian', 'Indonesian', 'Kannada', 'Lao', 'Latvian', 'Marathi', 'Persian', 'Pisin', 'Punjabi', 'Somali', 'Tamil', 'Tok' , 'Tsonga', 'Tswana', 'Zulu'];
+
+  updatedRow: {
+    newValue: RowData,
+    oldValue: RowData,
+    originalValue: RowData
+  };
+
+  constructor() {
+
+    this.configObject = {
+      settings: [{
+        objectKey: 'id',
+        sort: 'asc',
+        sortOrder: 1,
+        columnOrder: 0
+      }, {
+        objectKey: 'name',
+        sort: 'asc',
+        sortOrder: 0,
+        columnOrder: 1
+      }, {
+        objectKey: 'language',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test1',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test2',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test3',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test4',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test5',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test6',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test7',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test8',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test9',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test10',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test11',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test12',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test13',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test14',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test15',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test16',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test17',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test18',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test19',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }, {
+        objectKey: 'test20',
+        sort: 'enable',
+        columnOrder: 3,
+        visible: true
+      }],
+      fields: [{
+        name: 'Id',
+        objectKey: 'id'
+      }, {
+        name: 'Name',
+        objectKey: 'name',
+        inlineEdit: true,
+          sort: (row) => {return row.name.substring(1, 5); }
+      }, {
+        name: 'Language',
+        objectKey: 'language',
+        inlineEdit: this.languages,
+        value: () => {
+          const langId = Math.floor(Math.random() * this.languages.length);
+          return this.languages[langId];
+        }
+      }, {
+        name: 'test1',
+        objectKey: 'test1',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test2',
+        objectKey: 'test2',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test3',
+        objectKey: 'test3',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test4',
+        objectKey: 'test4',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test5',
+        objectKey: 'test5',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test6',
+        objectKey: 'test6',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test7',
+        objectKey: 'test7',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test8',
+        objectKey: 'test8',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test9',
+        objectKey: 'test9',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test10',
+        objectKey: 'test10',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test11',
+        objectKey: 'test11',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test12',
+        objectKey: 'test12',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test13',
+        objectKey: 'test13',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test14',
+        objectKey: 'test14',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test15',
+        objectKey: 'test15',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test16',
+        objectKey: 'test16',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test17',
+        objectKey: 'test17',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test18',
+        objectKey: 'test18',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test19',
+        objectKey: 'test19',
+        inlineEdit: true,
+        columnClass: (row) => { return 'aaa'; }
+      }, {
+        name: 'test20',
+        objectKey: 'test20',
+        inlineEdit: true,
+        columnClass: (row) => { console.log('aaa'); return 'aaa'; }
+      }
+    ],
+      data: []
+    };
+
+console.log(' configObject ', this.configObject);
+
+this.configObject.data = [];
+
+    for(let i = 0; i<1000; i++){
+      this.configObject.data.push( {
+        'id': i,
+        'name': 'Virginia' + i,
+        'test1': 'mytest1',
+        'test2': 'mytest2',
+        'test3': 'mytest3',
+        'test4': 'mytest4',
+        'test5': 'mytest5',
+        'test6': 'mytest6',
+        'test7': 'mytest7',
+        'test8': 'mytest8',
+        'test9': 'mytest9',
+        'test10': 'mytest10',
+        'test11': 'mytest11',
+        'test12': 'mytest12',
+        'test13': 'mytest13',
+        'test14': 'mytest14',
+        'test15': 'mytest15',
+        'test16': 'mytest16',
+        'test17': 'mytest17',
+        'test18': 'mytest18',
+        'test19': 'mytest19',
+        'test20': 'mytest20',
+      })
+    }
+  }
+  logData() {
+    console.log(this.configObject.data);
+  }
+
+  /** Listen for events
+   * */
+  public trigger = function($event){
+    console.log($event);
+
+
+    if ($event.value && $event.name === 'gt-row-updated') {
+      this.updatedRow = $event.value;
+    }
+  };
+
+
+}
