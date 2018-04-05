@@ -1,0 +1,125 @@
+import { Component } from '@angular/core';
+import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { State, process } from '@progress/kendo-data-query';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'app';
+  public gridData: {}[] = [];
+  public gridView: GridDataResult;
+
+  public pageSize = 10;
+  public skip = 0;
+  public sort: SortDescriptor[] = [{
+    field: 'ProductName',
+    dir: 'asc'
+  }];
+
+    constructor(){
+        for (var i = 0; i < 250; i++) {
+          this.gridData.push({ ProductID: i, ProductName: "Name" + i, Category: { CategoryId: i * 5, CategoryName: "CategoryName" + (i % 5) }, UnitPrice: 35 * i, UnitsInStock: i * 2, Discontinued: i%2 === 1 });
+      }
+
+      this.loadItems();
+    }
+
+    public pageChange(event: PageChangeEvent): void {
+        this.skip = event.skip;
+        this.loadItems();
+    }
+
+    public sortChange(sort: SortDescriptor[]): void {
+        this.sort = sort;
+        this.loadItems();
+    }
+
+    private loadItems(): void {
+        this.gridView = {
+            data: orderBy(this.gridData, this.sort).slice(this.skip, this.skip + this.pageSize),
+            total: this.gridData.length
+        };
+    }
+
+
+}
+
+
+
+
+
+
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul>
+
+<div>
+  <h4>Kendo grid</h4>
+
+  <kendo-grid
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="true"
+      [height]="400"
+      (pageChange)="pageChange($event)"
+
+      [sortable]="{
+        allowUnsort: true,
+        mode: 'multiple'
+        }"
+      [sort]="sort"
+      (sortChange)="sortChange($event)"
+
+    >
+
+    <kendo-grid-column field="ProductID" title="ID" width="80">
+    </kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Name" width="250">
+    </kendo-grid-column>
+    <kendo-grid-column field="Category.CategoryName" title="Category">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="Price" editor="numeric" width="80"> </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+    </kendo-grid-column>
+    <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+        </ng-template>
+    </kendo-grid-column>
+</kendo-grid>
+
+</div>
+
+
+ng new angular5
+npm install --save @progress/kendo-angular-grid @progress/kendo-angular-dropdowns @progress/kendo-angular-inputs @progress/kendo-angular-dateinputs @progress/kendo-data-query @progress/kendo-angular-intl @progress/kendo-angular-l10n @progress/kendo-drawing @progress/kendo-angular-excel-export @progress/kendo-angular-buttons
+npm install --save @progress/kendo-theme-default
+
+angular-cli.json
+
+ "styles": [
+        "styles.css",
+        "../node_modules/@progress/kendo-theme-default/scss/all.scss"
+      ],
