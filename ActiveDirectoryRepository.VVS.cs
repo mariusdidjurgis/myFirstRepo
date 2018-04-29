@@ -1,0 +1,208 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
+using Nevda.VVS.Models;
+using Nevda.VVS.Models.Authentication;
+
+namespace Nevda.VVS.IdentityServer.DataRepository.Repositories
+{
+    public interface IActiveDirectoryRepository
+    {
+        IList<ActiveDirectoryUser> GetAllUsers(bool activeOnly = false);
+        ActiveDirectoryUser GetActiveDirectoryUser(string userName, string password);
+        bool UseActiveDirectoryModule { get; }
+    }
+
+    public class ActiveDirectoryRepository : IActiveDirectoryRepository
+    {
+        #region Active Directory connection data
+
+        public bool UseActiveDirectoryModule
+        {
+            get
+            {
+                var value = ConfigurationManager.AppSettings["UseActiveDirectoryModule"];
+                var result = false;
+
+                if (!string.IsNullOrEmpty(value))
+                    Boolean.TryParse(value, out result);
+
+                return result;
+            }
+        }
+
+        private string ADDomain
+        {
+            get { return ConfigurationManager.AppSettings["ActiveDirectoryDomain"]; }
+        }
+
+        private string ADUserName
+        {
+            get { return ConfigurationManager.AppSettings["ActiveDirectoryUserName"]; }
+        }
+
+        private string ADPassword
+        {
+            get { return ConfigurationManager.AppSettings["ActiveDirectoryPassword"]; }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets all Active Directory users
+        /// </summary>
+        /// <returns></returns>
+        public IList<ActiveDirectoryUser> GetAllUsers(bool activeOnly = false)
+        {
+            var users = new List<ActiveDirectoryUser>();
+
+            try
+            {
+                using (var context = new PrincipalContext(ContextType.Domain, ADDomain, ADUserName, ADPassword))
+                {
+                    using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
+                    {
+                        foreach (var result in searcher.FindAll())
+                        {
+                            DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
+
+                            if (de.Properties["samAccountName"].Value == null)
+                                continue;
+
+                            if (activeOnly && isAccountDisabled(de))
+                                continue;
+
+                            users.Add(CreateUserFromDirectoryEntry(de));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return users;
+        }
+
+        private bool isAccountDisabled(DirectoryEntry entry)
+        {
+            if (entry.NativeGuid == null) return true;
+
+            int flags = (int)entry.Properties["userAccountControl"].Value;
+
+            return Convert.ToBoolean(flags & 0x0002); //The second bit of userAccountControl will be 1 if the account is disabled.
+        }
+
+        /// <summary>
+        /// Gets Active Directory user by username
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public ActiveDirectoryUser GetUser(string userName)
+        {
+            ActiveDirectoryUser user = null;
+
+            try
+            {
+                using (var ctx = new PrincipalContext(ContextType.Domain, ADDomain, ADUserName, ADPassword))
+                {
+                    UserPrincipal qbeUser = new UserPrincipal(ctx);
+                    qbeUser.SamAccountName = userName;
+
+                    PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+                    UserPrincipal upr = srch.FindOne() as UserPrincipal;
+
+                    if (upr != null)
+                    {
+                        DirectoryEntry de = upr.GetUnderlyingObject() as DirectoryEntry;
+
+                        if (de != null)
+                            user = CreateUserFromDirectoryEntry(de);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return user;
+        }
+
+        /// <summary>
+        /// Validates Active Directory user's credentials
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool ValidateCredentials(string userName, string password)
+        {
+            bool isValid = false;
+
+            try
+            {
+                using (var ctx = new PrincipalContext(ContextType.Domain, ADDomain, ADUserName, ADPassword))
+                {
+                    isValid = ctx.ValidateCredentials(userName, password);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return isValid;
+        }
+
+        private ActiveDirectoryUser CreateUserFromDirectoryEntry(DirectoryEntry de)
+        {
+            ActiveDirectoryUser user = new ActiveDirectoryUser
+            {
+                ObjectGuid = new Guid((byte[])de.Properties["objectGuid"].Value),
+                Name = de.Properties["givenName"].Value != null ? de.Properties["givenName"].Value.ToString() : null,
+                Surname = de.Properties["sn"].Value != null ? de.Properties["sn"].Value.ToString() : null,
+                UserName = de.Properties["samAccountName"].Value != null ? de.Properties["samAccountName"].Value.ToString() : null,
+                UserPrincipalName = de.Properties["userPrincipalName"].Value != null ? de.Properties["userPrincipalName"].Value.ToString() : null,
+                Email = de.Properties["mail"].Value != null ? de.Properties["mail"].Value.ToString() : null,
+                Telephone = de.Properties["mobile"].Value != null ? de.Properties["mobile"].Value.ToString() : null,
+                WhenCreated = (DateTime)de.Properties["whenCreated"].Value,
+                WhenChanged = de.Properties["whenChanged"].Value != null ? (DateTime?)de.Properties["whenChanged"].Value : null,
+                IsDisabled = isAccountDisabled(de),
+                WWWHomePage = de.Properties["wWWHomePage"].Value != null ? de.Properties["wWWHomePage"].Value.ToString() : null,
+                Department = de.Properties["department"].Value != null ? de.Properties["department"].Value.ToString() : null,
+                Company = de.Properties["company"].Value != null ? de.Properties["company"].Value.ToString() : null
+            };
+
+            return user;
+        }
+
+        /// <summary>
+        /// Gets user by Active Directory user's credentials
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public ActiveDirectoryUser GetActiveDirectoryUser(string userName, string password)
+        {
+            var activeDirectoryUser = GetUser(userName);
+
+            if (activeDirectoryUser == null)
+                throw new Exception("Naudotojas nerastas");
+
+            if (activeDirectoryUser.IsDisabled)
+                throw new Exception("Prisijungimas uždraustas");
+
+            if (!ValidateCredentials(userName, password))
+                throw new Exception("Neteisingas slaptažodis");
+
+            //var naudotojas = _naudotojasRepository.GetByActiveDirectoryUserGuid(activeDirectoryUser.ObjectGuid);
+           //if (naudotojas == null)
+            //    naudotojas = _naudotojasRepository.CreateNaudotojas(activeDirectoryUser);
+            
+            return activeDirectoryUser;
+        }
+    }
+}
