@@ -123,3 +123,6 @@ angular-cli.json
         "styles.css",
         "../node_modules/@progress/kendo-theme-default/scss/all.scss"
       ],
+      
+  example
+  https://plnkr.co/edit/Y23o68AdhfW1Gf9sD3lq?p=preview

@@ -1,0 +1,55 @@
+{
+   "Price":76.2,
+   "TradedPosition":1,
+   "TradedPositionDisplay":"1",
+   "ActualHolding":1,
+   "ActualHoldingDisplay":"1",
+   "DealPriceDate":"2018-03-27",
+   "PriceWithCurrency":"76,2 SEK",
+   "SecuirityName":"ADERA    B   AK",
+   "SecuirityType":"AK",
+   "Isin":"SE0000472268",
+   "InternalIsin":"SE0000472268",
+   "ClearingInstitution":"VPC",
+   "Pset":"VPCSSESS",
+   "TradeDate":"2018-03-28",
+   "IntendedSettlementDate":"2018-03-28",
+   "DeliverableHolding":1,
+   "DeliverableHoldingDisplay":"1",
+   "IsDeliverable":true,
+   "IsTransferrable":true,
+   "DeliverableFlag":"Y",
+   "SettlementQuantityType":"A",
+   "SettlementQuantityTypeDisplay":"FAMT",
+   "AntDec":0,
+   "QuantityToTransfer":0,
+   "ExternalDeliveringAccounts":[  
+      {  
+         "depaId":"01000089940",
+         "isinCode":null,
+         "custodyAccountNumber":"000010470166",
+         "custodyAccountFunctionCode":"OR ",
+         "custodyAccountFunctionDescription":"Owner",
+         "custodyAccountTypeCode":"001",
+         "clearingInstitutionIdReceiving":"VPC"
+      }
+   ],
+   "ExternalReceivingAccounts":[  
+      {  
+         "depaId":"01000091295",
+         "isinCode":null,
+         "custodyAccountNumber":"000010470166",
+         "custodyAccountFunctionCode":"OR ",
+         "custodyAccountFunctionDescription":"Owner",
+         "custodyAccountTypeCode":"001",
+         "clearingInstitutionIdReceiving":"VPC"
+      }
+   ],
+   "NoMarketPriceReason":null,
+   "MarketValueCurrencyCode":"SEK",
+   "MarketValueAmount":76.2,
+   "BaseValueAmount":76.2,
+   "ForeignCurrencyCode":"SEK",
+   "DealPriceRate":76.2,
+   "FxRate":1
+}
