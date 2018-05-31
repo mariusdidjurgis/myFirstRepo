@@ -25,6 +25,7 @@
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
     "dragula": "^3.7.2",
+    "jquery": "^3.3.1",
     "ng2-dragula": "^1.5.0",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.0",
