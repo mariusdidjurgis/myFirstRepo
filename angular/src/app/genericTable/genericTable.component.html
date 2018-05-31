@@ -1,0 +1,18 @@
+<p>
+    genericTable works!
+</p>
+<ng-template #gtColumnItem let-column let-index="index" let-name="name">
+    <div class="btn-group btn-group-sm mb-1 col-12 p-0" role="group">
+      <button type="button" class="btn w-100" [ngClass]="{'btn-primary':column.visible !== false, 'btn-secondary':column.visible === false}" style="cursor: move;">{{index}}: {{name}}</button>
+      <button type="button" class="btn w-100" [ngClass]="{'btn-outline-primary':column.visible !== false, 'btn-outline-secondary':column.visible === false}" (click)="customColumnSettings.toggleColumnVisibility(column)" style="cursor: pointer;">{{column.visible !== false ? 'visible':'hidden'}}</button>
+    </div>
+  </ng-template>
+  <button class="btn-link" (click)="customColumnSettings.toggleColumnSettings()"> {{customColumnSettings.active ? 'Hide column settings':'Show column settings'}}</button>
+  <gt-column-settings [genericTable]="myCustomTable" #customColumnSettings [gtColumnItem]="gtColumnItem" [gtTexts]="{help:'Click to toggle column visibility, drag to reorder.'}" [gtHeaderClasses]="'px-3 pt-3 pb-2 bg-light'" [gtWrapperClasses]="'px-3 pb-2 bg-light h-50'">
+    <div class="table-responsive">
+      <generic-table [gtClasses]="'table-hover'" #myCustomTable [gtSettings]="secondConfigObject.settings" [gtFields]="secondConfigObject.fields" [gtData]="secondConfigObject.data"></generic-table>
+    </div>
+    <div class="text-center">
+      <gt-pagination [gtClasses]="'justify-content-center'" [genericTable]="myCustomTable"></gt-pagination>
+    </div>
+  </gt-column-settings>
