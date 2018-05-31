@@ -11,3 +11,5 @@ https://github.com/angular/material2/blob/master/guides/getting-started.md
 [HMR] angular
 
 RU211494072NL
+
+https://stackoverflow.com/questions/36271899/what-is-the-correct-way-to-share-the-result-of-an-angular-http-network-call-in-r
