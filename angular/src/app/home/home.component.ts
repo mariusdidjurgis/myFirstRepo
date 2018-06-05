@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-//console.log('mm2', module);
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
