@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 
+@Console('hello custom decorator')
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -22,3 +23,10 @@ export class HomeComponent implements OnInit{
         console.log('// clicked, `event` available ', event);
     }
 }
+
+function Console(message) : any {
+    console.log('Our decorated class: ', message);
+    return function(target: any){
+        console.log('Our decorated class', target);
+    }
+  }
