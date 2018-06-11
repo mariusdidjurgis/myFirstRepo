@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-home',
@@ -9,7 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck,
 export class HomeComponent implements OnInit{
 
     private title: string = "Home works";
-    constructor(private changeDetectorRef: ChangeDetectorRef) { 
+    constructor(private changeDetectorRef: ChangeDetectorRef) {
         console.log(this);
     }
 
@@ -17,4 +17,8 @@ export class HomeComponent implements OnInit{
 
     }
 
+    @HostListener('click', ['$event'])
+    onHostClick(event: Event) {
+        console.log('// clicked, `event` available ', event);
+    }
 }
