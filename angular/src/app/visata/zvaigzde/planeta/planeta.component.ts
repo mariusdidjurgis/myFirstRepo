@@ -9,6 +9,7 @@ export class PlanetaComponent implements OnInit, DoCheck, OnChanges {
 
     @Input() Name: string;  
     private title: string = "Planet works";
+    private model: {} = {};
     constructor() { 
 
     }
@@ -22,6 +23,10 @@ export class PlanetaComponent implements OnInit, DoCheck, OnChanges {
     }
     ngOnChanges(changes: SimpleChanges): void {
         console.log('ngOnChanges ', changes);
+    }
+
+    onSubmit(){
+        console.log('submit', this);
     }
 
 }
