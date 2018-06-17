@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, HostListener, ViewContainerRef, ComponentFactoryResolver, Compiler, Injector, NgModuleRef, NgModule, ViewChild, ComponentRef } from '@angular/core';
+import { AlertComponent } from '../Shared/Components/allert.component';
 
 @Console('hello custom decorator')
 @Component({
@@ -10,12 +11,27 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck,
 export class HomeComponent implements OnInit{
 
     private title: string = "Home works";
-    constructor(private changeDetectorRef: ChangeDetectorRef) {
+    private dynMessage: string = "some kind of message";
+    @ViewChild("dynamicContainer", { read: ViewContainerRef }) container;
+    
+    constructor(private changeDetectorRef: ChangeDetectorRef,
+        private resolver: ComponentFactoryResolver) {
         console.log(this);
     }
 
     ngOnInit() {
 
+    }
+
+    testDynamicComponent(message: string){
+        //this.container.clear(); //you can clear previous attached components
+        let componentFactory = this.resolver.resolveComponentFactory(AlertComponent);
+        let dynamicComponent = this.container.createComponent(componentFactory);
+        dynamicComponent.instance.type = message;
+    }
+
+    ngOnDestroy() {
+        this.container.destroy(); 
     }
 
     @HostListener('click', ['$event'])

@@ -13,6 +13,7 @@ import { ZvaigzdeComponent } from './visata/zvaigzde/zvaigzde.component';
 import { GalaktikaComponent } from './visata/galaktika/galaktika.component';
 import { PlanetaComponent } from './visata/zvaigzde/planeta/planeta.component';
 import { GenericTableComponent } from './genericTable/genericTable.component';
+import { AlertComponent } from './Shared/Components/allert.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GenericTableComponent } from './genericTable/genericTable.component';
     GalaktikaComponent,
     PlanetaComponent,
     HomeComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { GenericTableComponent } from './genericTable/genericTable.component';
         { path: '**', redirectTo: 'visata' }
     ]), 
   ],
+  entryComponents: [ AlertComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

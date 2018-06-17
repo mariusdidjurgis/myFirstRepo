@@ -1,8 +1,9 @@
 <p>
   {{ title }}
   <input type="text" name="title" [(ngModel)]="title" >
-
+<button type="button" class="btn btn-primary" (click)="testDynamicComponent(dynMessage)">Add dynamic component</button>
 </p>
+<div #dynamicContainer></div>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
