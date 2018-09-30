@@ -13,3 +13,12 @@ https://github.com/angular/material2/blob/master/guides/getting-started.md
 RU211494072NL
 
 https://stackoverflow.com/questions/36271899/what-is-the-correct-way-to-share-the-result-of-an-angular-http-network-call-in-r
+
+openSource apps build on angular
+https://medium.com/aviabird/10-amazing-open-source-angular-2-x-apps-825fb169dce3
+
+cache:
+https://github.com/DarthKurt/ng2-cache-service
+https://www.npmjs.com/package/angular-async-cache#installation
+https://github.com/jmdobry/CacheFactory
+https://www.npmjs.com/package/ng2-cache
