@@ -14,6 +14,9 @@ import { GalaktikaComponent } from './visata/galaktika/galaktika.component';
 import { PlanetaComponent } from './visata/zvaigzde/planeta/planeta.component';
 import { GenericTableComponent } from './genericTable/genericTable.component';
 import { AlertComponent } from './Shared/Components/allert.component';
+import { ApiService } from './Shared/Services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AccountComponent } from './Shared/Components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,12 @@ import { AlertComponent } from './Shared/Components/allert.component';
     PlanetaComponent,
     HomeComponent,
     GenericTableComponent,
-    AlertComponent
+    AlertComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     GenericTableModule, /** ADD THIS LINE TO YOUR APP MODULE! */
     ColumnSettingsModule, /** ADD THIS LINE TO INCLUDE COLUMN SETTINGS MODULE (OPTIONAL) */
@@ -42,7 +47,7 @@ import { AlertComponent } from './Shared/Components/allert.component';
     ]), 
   ],
   entryComponents: [ AlertComponent ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

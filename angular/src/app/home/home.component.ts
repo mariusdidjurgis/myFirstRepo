@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck, OnChanges, SimpleChanges, HostListener, ViewContainerRef, ComponentFactoryResolver, Compiler, Injector, NgModuleRef, NgModule, ViewChild, ComponentRef } from '@angular/core';
 import { AlertComponent } from '../Shared/Components/allert.component';
 import { Customer, Person } from '../Shared/Types/customer';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Console('hello custom decorator')
 @Component({
@@ -14,7 +15,9 @@ export class HomeComponent implements OnInit{
     private title: string = "Home works";
     private dynMessage: string = "some kind of message";
     @ViewChild("dynamicContainer", { read: ViewContainerRef }) container;
-    
+    @ViewChild("testForm") testForm: any;
+    public account: any = {};
+
     constructor(private changeDetectorRef: ChangeDetectorRef, private resolver: ComponentFactoryResolver) {
 
         let c = new Customer();
@@ -23,10 +26,13 @@ export class HomeComponent implements OnInit{
         let c3 = new Customer({ Name: "Jonas"});
         let p1 = new Person({ Name: "Smith"} as Person);
         let c4 = new Customer(p1);
-        
     }
 
     ngOnInit() {
+
+    }
+
+    onSubmit() {
 
     }
 
@@ -45,7 +51,6 @@ export class HomeComponent implements OnInit{
     onHostClick(event: Event) {
         console.log('// clicked, `event` available ', event);
     }
-
 }
 
 function Console(message) : any {
@@ -53,4 +58,4 @@ function Console(message) : any {
     return function(target: any){
         console.log('Our decorated class', target);
     }
-  }
+}
