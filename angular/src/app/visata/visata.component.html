@@ -11,16 +11,29 @@
   
   
   <div>
-    "@ng-bootstrap/ng-bootstrap": "^1.1.2",
-    "@progress/kendo-angular-buttons": "^4.0.0",
-    "@progress/kendo-angular-dateinputs": "^2.2.0",
-    "@progress/kendo-angular-dropdowns": "^2.1.0",
-    "@progress/kendo-angular-excel-export": "^1.0.7",
-    "@progress/kendo-angular-grid": "^3.0.0",
-    "@progress/kendo-angular-inputs": "^2.2.0",
-    "@progress/kendo-angular-intl": "^1.4.0",
-    "@progress/kendo-angular-l10n": "^1.1.0",
-    "@progress/kendo-data-query": "^1.2.2",
-    "@progress/kendo-drawing": "^1.5.2",
-    "@progress/kendo-theme-default": "^2.49.1",
+    <kendo-grid
+        (cellClick)="editClick($event)"
+        [groupable]="true"
+        [group]="groups"
+        (groupChange)="groupChange($event)"
+        [data]="view"
+        height="500"
+        (add)="addHandler($event)"
+        >
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand>Add new</button>
+            <button *ngIf="isInEditingMode"
+                (click)="cancelHandler()"
+                class="k-button k-primary">Cancel</button>
+        </ng-template>
+        <kendo-grid-column field="Pset" title="Pset"></kendo-grid-column>
+        <kendo-grid-column field="Isin" editor="numeric" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="TradeDate" editor="numeric" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="SettlementDate" editor="numeric" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="TotalAmount" editor="numeric" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="AvailableAmount" editor="numeric" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="Status" editor="string" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="Valid" editor="boolean" title="Valid"></kendo-grid-column>
+        <!-- <kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column> -->
+    </kendo-grid>
   </div>

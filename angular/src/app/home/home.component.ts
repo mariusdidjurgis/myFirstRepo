@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnInit() {
-
+        
     }
 
     onSubmit() {
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnDestroy() {
-        this.container.destroy(); 
+        
     }
 
     @HostListener('click', ['$event'])

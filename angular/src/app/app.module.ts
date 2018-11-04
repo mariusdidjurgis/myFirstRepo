@@ -12,11 +12,17 @@ import { VisataComponent } from './visata/visata.component';
 import { ZvaigzdeComponent } from './visata/zvaigzde/zvaigzde.component';
 import { GalaktikaComponent } from './visata/galaktika/galaktika.component';
 import { PlanetaComponent } from './visata/zvaigzde/planeta/planeta.component';
+import { ProductComponent } from './product/product.component';
 import { GenericTableComponent } from './genericTable/genericTable.component';
 import { AlertComponent } from './Shared/Components/allert.component';
 import { ApiService } from './Shared/Services/api.service';
+import { ProductsService } from './Shared/Services/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './Shared/Components/account/account.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -25,6 +31,7 @@ import { AccountComponent } from './Shared/Components/account/account.component'
     ZvaigzdeComponent,
     GalaktikaComponent,
     PlanetaComponent,
+    ProductComponent,
     HomeComponent,
     GenericTableComponent,
     AlertComponent,
@@ -43,11 +50,12 @@ import { AccountComponent } from './Shared/Components/account/account.component'
         { path: 'zvaigzde', component: ZvaigzdeComponent },
         { path: 'galaktika', component: GalaktikaComponent },
         { path: 'generic-table', component: GenericTableComponent },
+        { path: 'product', component: ProductComponent },
         { path: '**', redirectTo: 'visata' }
-    ]), 
+    ]), GridModule, BrowserAnimationsModule, 
   ],
   entryComponents: [ AlertComponent ],
-  providers: [ApiService],
+  providers: [ApiService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
