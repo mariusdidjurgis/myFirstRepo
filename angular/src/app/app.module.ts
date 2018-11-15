@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './Shared/Components/account/account.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridWrapperComponent } from './Shared/Components/grid-wrapper/grid-wrapper.component';
 
 
 
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     GenericTableComponent,
     AlertComponent,
-    AccountComponent
+    AccountComponent,
+    GridWrapperComponent
   ],
   imports: [
     BrowserModule,

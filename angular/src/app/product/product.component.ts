@@ -74,7 +74,7 @@ export class ProductComponent implements OnInit {
         sender.addRow(this.formGroup);
     }
 
-    public editHandler({ sender, colIndex, rowIndex, dataItem }: EditEvent): void {
+    public editHandler({ sender, colIndex, rowIndex, dataItem }: any): void {
         if (this.formGroup && !this.formGroup.valid) {
             return;
         }
@@ -84,8 +84,8 @@ export class ProductComponent implements OnInit {
         this.editedRowIndex = rowIndex;
         sender.editRow(rowIndex, this.formGroup);
         setTimeout(() => {
-          console.log(colIndex);
-          document.querySelector(`.k-grid-edit-row > td:nth-child(${colIndex + 1}) input`).focus();
+          let elem = document.querySelector(`.k-grid-edit-row > td:nth-child(${colIndex + 1}) input`)  as HTMLElement
+          elem.focus();
         });
     }
 

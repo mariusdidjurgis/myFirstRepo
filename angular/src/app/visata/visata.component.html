@@ -1,39 +1,6 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
-  
-      </div>
-    </div>
-  </div>
-  <div>
-  
-  </div>
-  
   
   <div>
-    <kendo-grid
-        (cellClick)="editClick($event)"
-        [groupable]="true"
-        [group]="groups"
-        (groupChange)="groupChange($event)"
-        [data]="view"
-        height="500"
-        (add)="addHandler($event)"
-        >
-        <ng-template kendoGridToolbarTemplate>
-            <button kendoGridAddCommand>Add new</button>
-            <button *ngIf="isInEditingMode"
-                (click)="cancelHandler()"
-                class="k-button k-primary">Cancel</button>
-        </ng-template>
-        <kendo-grid-column field="Pset" title="Pset"></kendo-grid-column>
-        <kendo-grid-column field="Isin" editor="numeric" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="TradeDate" editor="numeric" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="SettlementDate" editor="numeric" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="TotalAmount" editor="numeric" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="AvailableAmount" editor="numeric" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="Status" editor="string" title="Price"></kendo-grid-column>
-        <kendo-grid-column field="Valid" editor="boolean" title="Valid"></kendo-grid-column>
-        <!-- <kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column> -->
-    </kendo-grid>
+      <grid-wrapper [columns]="columns" [data]="holdings">
+
+      </grid-wrapper>
   </div>
