@@ -1,11 +1,16 @@
 <div class="container">
     <div class="row">
+        <h2>kendo grid</h2>
         <div class="col-12">
-                <kendo-grid
-                    [data]="data"
-                    height="500"
-                >
-                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title"></kendo-grid-column>
+            <kendo-grid
+                    [kendoGridBinding]="data"
+                    [pageSize]="kSettings.pageSize"
+                    [pageable]="kSettings.pageable"
+                    [sortable]="kSettings.sortable"
+                    [filterable]="kSettings.filterable"
+                    [groupable]="kSettings.groupable"
+                    [height]="kSettings.height">
+                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title" [filter]="col.type"></kendo-grid-column>
 
             </kendo-grid>
         </div>

@@ -14,28 +14,36 @@ export class VisataComponent implements OnInit {
     public holdings: any[]; 
     public columns = [{
         field: "Pset",
-        title: "Pset title"
+        title: "Pset title",
+        type: 'text'
     },{
         field: "Isin",
-        title: "Isin title"
+        title: "Isin title",
+        type: 'text'
     },{
         field: "TradeDate",
-        title: "TradeDate title"
+        title: "TradeDate title",
+        type: 'date'
     },{
         field: "SettlementDate",
-        title: "SettlementDate title"
+        title: "SettlementDate title",
+        type: 'date'
     },{
         field: "TotalAmount",
-        title: "TotalAmount title"
+        title: "TotalAmount title",
+        type: 'numeric'
     },{
         field: "AvailableAmount",
-        title: "AvailableAmount title"
+        title: "AvailableAmount title",
+        type: 'numeric'
     },{
         field: "Status",
-        title: "Status title"
+        title: "Status title",
+        type: 'text'
     },{
         field: "Valid",
-        title: "Valid title"
+        title: "Valid title",
+        type: 'boolean'
     }]
     //@ViewChild(GridComponent) private grid: GridComponent;
 

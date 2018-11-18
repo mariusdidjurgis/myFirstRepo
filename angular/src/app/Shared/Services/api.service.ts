@@ -54,7 +54,12 @@ export class ApiService {
                 AvailableAmount: 687, Status: "Aproved", Account: new Account({ Name: "Sarah", Number: "010000-345-678", Valid: true})})            
             ];
 
-        return Observable.of(holdings);
+        for(var i = 0; i<20; i++){
+            holdings.push(new Holding({ Id: Guid.newGuid(), Pset: "VPCESSESXXX", Isin: "isin" + (i+6), TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:1000, 
+            AvailableAmount: i*100+50, Status: "Pending", Account: new Account({ Name: "John", Number: "010000-123-456", Valid: true})}))
+        }
+        
+        return Observable.of(holdings).delay(100);
     }
     
 }
