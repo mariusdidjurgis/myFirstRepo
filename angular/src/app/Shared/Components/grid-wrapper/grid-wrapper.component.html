@@ -3,17 +3,17 @@
         <h2>kendo grid</h2>
         <div class="col-12">
             <kendo-grid
-                    [kendoGridInCellEditing]="createFormGroup"
-                    [kendoGridBinding]="data"
-                    [pageSize]="kSettings.pageSize"
-                    [pageable]="kSettings.pageable"
-                    [sortable]="kSettings.sortable"
-                    [filterable]="kSettings.filterable"
-                    [groupable]="kSettings.groupable"
-                    [height]="kSettings.height"
-                    [navigable]="true"
-                    >                    
-                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title" [filter]="col.type">
+                [kendoGridBinding]="data"
+                [kendoGridInCellEditing]="createFormGroup"
+                [pageSize]="kSettings.pageSize"
+                [pageable]="kSettings.pageable"
+                [sortable]="kSettings.sortable"
+                [filterable]="kSettings.filterable"
+                [groupable]="kSettings.groupable"
+                [height]="kSettings.height"
+                [navigable]="kSettings.navigable"
+                >        
+                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title" [filter]="col.type" [format]="col.format">
                 </kendo-grid-column>
             </kendo-grid>
         </div>     

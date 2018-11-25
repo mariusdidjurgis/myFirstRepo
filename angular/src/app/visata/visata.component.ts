@@ -29,20 +29,24 @@ export class VisataComponent implements OnInit {
         field: "TradeDate",
         title: "TradeDate title",
         type: 'date',
-        editable: true
+        editable: true,
+        format:'{0:yyyy-MM-dd}'
     },{
         field: "SettlementDate",
         title: "SettlementDate title",
         type: 'date',
-        editable: true
+        editable: true,
+        format:'{0:MM/dd/yyyy HH:mm:ss}'
     },{
         field: "TotalAmount",
         title: "TotalAmount title",
-        type: 'numeric'
+        type: 'numeric',
+        format: "{0:c}"
     },{
         field: "AvailableAmount",
         title: "AvailableAmount title",
-        type: 'numeric'
+        type: 'numeric',
+        format: '{0:c}'
     },{
         field: "ToTransferAmount",
         title: "Transfer amount",

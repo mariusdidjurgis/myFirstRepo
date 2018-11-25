@@ -18,6 +18,7 @@ export class GridWrapperComponent {
         sortable: true,
         filterable: true,
         groupable: false,
+        navigable: true,
         height: 500
     }
     public formGroup: FormGroup;
@@ -42,16 +43,6 @@ export class GridWrapperComponent {
         }
         this.formGroup = this.formBuilder.group(groupObject);
 
-        // this.formGroup = this.formBuilder.group({
-        //     'Id': item.Id,
-        //     'Pset': item.Pset, //[item.Pset, Validators.required],
-        //     'Isin': item.Isin,
-        //     'SettlementDate': item.SettlementDate, //[item.SettlementDate, Validators.compose([Validators.required, Validators.pattern('^[0-9]{1,3}')])],
-        //     'Status': item.Status
-        // });
-
-
         return this.formGroup;
     }
-
 }
