@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 import { FormGroup, NgForm, ControlContainer, FormsModule, FormBuilder  } from "@angular/forms";
-import { DataBindingDirective } from "@progress/kendo-angular-grid";
+import { DataBindingDirective, GridComponent } from "@progress/kendo-angular-grid";
 
 @Component({
     selector: "grid-wrapper",
@@ -22,7 +22,8 @@ export class GridWrapperComponent {
         height: 500
     }
     public formGroup: FormGroup;
-
+    @ViewChild(GridComponent) private grid;
+    
     constructor(private formBuilder: FormBuilder){
         this.createFormGroup = this.createFormGroup.bind(this);
         if(this.settings){
