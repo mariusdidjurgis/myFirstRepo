@@ -43,15 +43,15 @@ export class ApiService {
     public getHoldings() : Observable<Array<Holding>>{
         let holdings = [
             new Holding({ Id: Guid.newGuid(), Pset: "VPCESSESXXX", Isin: "isin1", TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:1000, 
-                AvailableAmount: 600, Status: "Pending", Account: new Account({ Name: "John", Number: "010000-123-456", Valid: true})}),
+                AvailableAmount: 600, Status: "Pending", Account: new Account({ Name: "John", Number: "010000-123-456", Valid: true}), ToTransferAmount: 0}),
             new Holding({ Id: Guid.newGuid(), Pset: "VPCESSGBXXX", Isin: "isin2", TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:900, 
-                AvailableAmount: 750, Status: "New", Account: new Account({ Name: "Arnie", Number: "010000-456-789", Valid: true})}),
+                AvailableAmount: 750, Status: "New", Account: new Account({ Name: "Arnie", Number: "010000-456-789", Valid: true}), ToTransferAmount: 0}),
             new Holding({ Id: Guid.newGuid(), Pset: "VPCESSDEXXX", Isin: "isin3", TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:2500, 
-                AvailableAmount: 900, Status: "Pending", Account: new Account({ Name: "Gilbert", Number: "010000-789-012", Valid: true})}),
+                AvailableAmount: 900, Status: "Pending", Account: new Account({ Name: "Gilbert", Number: "010000-789-012", Valid: true}), ToTransferAmount: 0}),
             new Holding({ Id: Guid.newGuid(), Pset: "VPCESSSPXXX", Isin: "isin4", TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:1650, 
-                AvailableAmount: 159, Status: "Pending", Account: new Account({ Name: "Suzie", Number: "010000-012-345", Valid: false})}),
+                AvailableAmount: 159, Status: "Pending", Account: new Account({ Name: "Suzie", Number: "010000-012-345", Valid: false}), ToTransferAmount: 0}),
             new Holding({ Id: Guid.newGuid(), Pset: "VPCESSITXXX", Isin: "isin5", TradeDate: new Date(), SettlementDate: new Date(), Valid: true, TotalAmount:1800, 
-                AvailableAmount: 687, Status: "Aproved", Account: new Account({ Name: "Sarah", Number: "010000-345-678", Valid: true})})            
+                AvailableAmount: 687, Status: "Aproved", Account: new Account({ Name: "Sarah", Number: "010000-345-678", Valid: true}), ToTransferAmount: 0})            
             ];
 
         for(var i = 0; i<20; i++){

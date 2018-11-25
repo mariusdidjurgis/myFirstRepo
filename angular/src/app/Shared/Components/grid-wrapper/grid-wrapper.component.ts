@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { FormGroup, NgForm, ControlContainer } from "@angular/forms";
+import { FormGroup, NgForm, ControlContainer, FormsModule, FormBuilder  } from "@angular/forms";
 import { DataBindingDirective } from "@progress/kendo-angular-grid";
 
 @Component({
@@ -20,12 +20,38 @@ export class GridWrapperComponent {
         groupable: false,
         height: 500
     }
+    public formGroup: FormGroup;
 
-    constructor(){
+    constructor(private formBuilder: FormBuilder){
+        this.createFormGroup = this.createFormGroup.bind(this);
         if(this.settings){
             Object.assign(this.kSettings, this.settings);
         }
         
         console.log(this);
     }
+
+    public createFormGroup(args: any): FormGroup {
+        const item = args.isNew ? {} : args.dataItem;
+
+        let groupObject = {};
+        for (let col of this.columns) {  
+            if(col.editable){
+                groupObject[col.field] = item[col.field];
+            }
+        }
+        this.formGroup = this.formBuilder.group(groupObject);
+
+        // this.formGroup = this.formBuilder.group({
+        //     'Id': item.Id,
+        //     'Pset': item.Pset, //[item.Pset, Validators.required],
+        //     'Isin': item.Isin,
+        //     'SettlementDate': item.SettlementDate, //[item.SettlementDate, Validators.compose([Validators.required, Validators.pattern('^[0-9]{1,3}')])],
+        //     'Status': item.Status
+        // });
+
+
+        return this.formGroup;
+    }
+
 }

@@ -92,8 +92,10 @@ export class ProductComponent implements OnInit {
     public cancelHandler(): void {
         this.closeEditor(this.grid, this.editedRowIndex);
     }
+    
+    public editClick({ dataItem, rowIndex, columnIndex, isEdited }: any): void {
+        console.log( dataItem, rowIndex, columnIndex, isEdited);
 
-    public editClick({ dataItem, rowIndex, columnIndex }: any): void {
         this.editHandler({
             dataItem: dataItem,
             rowIndex: rowIndex,

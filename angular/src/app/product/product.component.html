@@ -1,20 +1,23 @@
-<kendo-grid
-(cellClick)="editClick($event)"
-[groupable]="true"
-[group]="groups"
-(groupChange)="groupChange($event)"
-[data]="view"
-height="500"
-(add)="addHandler($event)"
->
-<ng-template kendoGridToolbarTemplate>
-    <button kendoGridAddCommand>Add new</button>
-    <button *ngIf="isInEditingMode"
-        (click)="cancelHandler()"
-        class="k-button k-primary">Cancel</button>
-</ng-template>
-<kendo-grid-column field="ProductName" title="Product Name"></kendo-grid-column>
-<kendo-grid-column field="UnitPrice" editor="numeric" title="Price"></kendo-grid-column>
-<kendo-grid-column field="Discontinued" editor="boolean" title="Discontinued"></kendo-grid-column>
-<kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column>
-</kendo-grid>
+<div class="container">
+    <div class="row">
+            <kendo-grid
+                (cellClick)="editClick($event)"
+                [groupable]="true"
+                [group]="groups"
+                (groupChange)="groupChange($event)"
+                [data]="view"
+                height="500"
+                (add)="addHandler($event)">
+                <ng-template kendoGridToolbarTemplate>
+                    <button kendoGridAddCommand>Add new</button>
+                    <button *ngIf="isInEditingMode"
+                        (click)="cancelHandler()"
+                        class="k-button k-primary">Cancel</button>
+                </ng-template>
+                <kendo-grid-column field="ProductName" title="Product Name"></kendo-grid-column>
+                <kendo-grid-column field="UnitPrice" editor="numeric" title="Price"></kendo-grid-column>
+                <kendo-grid-column field="Discontinued" editor="boolean" title="Discontinued"></kendo-grid-column>
+                <kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column>
+            </kendo-grid>
+    </div>
+</div>

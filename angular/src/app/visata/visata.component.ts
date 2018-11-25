@@ -13,9 +13,14 @@ export class VisataComponent implements OnInit {
 
     public holdings: any[]; 
     public columns = [{
+        field: "Message",
+        title: "Message",
+        type: 'text',
+    },{
         field: "Pset",
         title: "Pset title",
-        type: 'text'
+        type: 'text',
+        editable: true
     },{
         field: "Isin",
         title: "Isin title",
@@ -23,11 +28,13 @@ export class VisataComponent implements OnInit {
     },{
         field: "TradeDate",
         title: "TradeDate title",
-        type: 'date'
+        type: 'date',
+        editable: true
     },{
         field: "SettlementDate",
         title: "SettlementDate title",
-        type: 'date'
+        type: 'date',
+        editable: true
     },{
         field: "TotalAmount",
         title: "TotalAmount title",
@@ -36,6 +43,11 @@ export class VisataComponent implements OnInit {
         field: "AvailableAmount",
         title: "AvailableAmount title",
         type: 'numeric'
+    },{
+        field: "ToTransferAmount",
+        title: "Transfer amount",
+        type: 'numeric',
+        editable: true
     },{
         field: "Status",
         title: "Status title",

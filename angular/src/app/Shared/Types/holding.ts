@@ -10,6 +10,8 @@ export class Holding{
     AvailableAmount: number;
     Status: string;
     Account: Account;
+    ToTransferAmount: number;
+    Message: string;
 
     constructor();
     constructor(obj: Partial<Holding>);
