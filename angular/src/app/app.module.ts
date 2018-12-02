@@ -22,8 +22,7 @@ import { AccountComponent } from './Shared/Components/account/account.component'
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridWrapperComponent } from './Shared/Components/grid-wrapper/grid-wrapper.component';
-
-
+import { BasicGridWrapperComponent } from './Shared/Components/grid-wrapper-build-in-data-binding/basic-grid-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,8 @@ import { GridWrapperComponent } from './Shared/Components/grid-wrapper/grid-wrap
     GenericTableComponent,
     AlertComponent,
     AccountComponent,
-    GridWrapperComponent
+    GridWrapperComponent,
+    BasicGridWrapperComponent
   ],
   imports: [
     BrowserModule,

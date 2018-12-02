@@ -1,6 +1,14 @@
   
-  <div>
-      <grid-wrapper [columns]="columns" [data]="holdings">
+<h2 (click)="showBasic = !showBasic">basic kendo grid</h2>
+<div [hidden]="!showBasic">        
+    <basic-grid-wrapper [columns]="columns" [data]="holdings">
 
-      </grid-wrapper>
-  </div>
+    </basic-grid-wrapper>
+</div>
+  
+<h2>kendo grid</h2>
+<div>
+    <grid-wrapper [columns]="columns" [data]="holdings">
+
+    </grid-wrapper>
+</div>

@@ -69,9 +69,5 @@ export class VisataComponent implements OnInit {
 
     public ngOnInit(): void {
         this.api.getHoldings().subscribe((x: any) => { this.holdings = x; });
-
-        this.api.getHoldings().subscribe(x => {
-            this.holdings = x;    
-        });
     }
 }
