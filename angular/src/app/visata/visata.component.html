@@ -5,7 +5,13 @@
 
     </basic-grid-wrapper>
 </div>
-  
+    
+<h2>Base kendo grid</h2>
+<div>
+    <base-grid [columns]="columns" (cellClose)="onCellClose($event)">
+    </base-grid>
+</div>
+
 <h2>kendo grid</h2>
 <div>
     <grid-wrapper [columns]="columns" [data]="holdings">

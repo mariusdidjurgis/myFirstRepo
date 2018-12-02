@@ -22,7 +22,10 @@ import { AccountComponent } from './Shared/Components/account/account.component'
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridWrapperComponent } from './Shared/Components/grid-wrapper/grid-wrapper.component';
+import { GridDatasourceService } from './Shared/Services/gridDatasource.service';
 import { BasicGridWrapperComponent } from './Shared/Components/grid-wrapper-build-in-data-binding/basic-grid-wrapper.component';
+import { BaseGridComponent } from './Shared/Components/grid-wrapper-custom-binding/base-grid.component';
+import { BaseDataBindingDirective } from './Shared/Components/grid-wrapper-custom-binding/base-data-binding.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { BasicGridWrapperComponent } from './Shared/Components/grid-wrapper-buil
     AlertComponent,
     AccountComponent,
     GridWrapperComponent,
-    BasicGridWrapperComponent
+    BasicGridWrapperComponent,
+    BaseGridComponent,
+    BaseDataBindingDirective
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ import { BasicGridWrapperComponent } from './Shared/Components/grid-wrapper-buil
     ]), GridModule, BrowserAnimationsModule, 
   ],
   entryComponents: [ AlertComponent ],
-  providers: [ApiService, ProductsService],
+  providers: [ApiService, ProductsService, GridDatasourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

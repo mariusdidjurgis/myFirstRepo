@@ -70,4 +70,8 @@ export class VisataComponent implements OnInit {
     public ngOnInit(): void {
         this.api.getHoldings().subscribe((x: any) => { this.holdings = x; });
     }
+
+    public onCellClose(evt: any){
+        console.log('onCellClose ', evt.dataItem, ' evt ', evt);
+    }
 }
