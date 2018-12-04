@@ -15,7 +15,8 @@
                 [height]="kSettings.height"
                 [navigable]="kSettings.navigable"
                 >        
-                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title" [filter]="col.type" [format]="col.format">
+                <kendo-grid-column *ngFor="let col of columns" [field]="col.field" [title]="col.title" [filter]="col.type" [format]="col.format" 
+                                    [editor]="col.type">
                 </kendo-grid-column>
             </kendo-grid>
         </div>     

@@ -23,7 +23,6 @@ export class BaseDataBindingDirective extends DataBindingDirective implements On
         this.serviceSubscription = this.dataSource.subscribe((result) => {
             this.grid.loading = false;
             this.grid.data = result;
-            console.log(' res ', result);
             this.notifyDataChange();
         });
 

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupDescriptor, groupBy } from '@progress/kendo-data-query';
 import { GridComponent, AddEvent, EditEvent } from '@progress/kendo-angular-grid';
+import { Holding } from '../Shared/Types/holding';
 
 @Component({
     selector: 'app-visata',
@@ -51,7 +52,7 @@ export class VisataComponent implements OnInit {
         field: "ToTransferAmount",
         title: "Transfer amount",
         type: 'numeric',
-        editable: true
+        editable: true,
     },{
         field: "Status",
         title: "Status title",
@@ -59,7 +60,8 @@ export class VisataComponent implements OnInit {
     },{
         field: "Valid",
         title: "Valid title",
-        type: 'boolean'
+        type: 'boolean',
+        editable: true,
     }]
     //@ViewChild(GridComponent) private grid: GridComponent;
 
@@ -72,6 +74,13 @@ export class VisataComponent implements OnInit {
     }
 
     public onCellClose(evt: any){
-        console.log('onCellClose ', evt.dataItem, ' evt ', evt);
+        let holding : Holding = evt.dataItem;
+        if(holding.ToTransferAmount > holding.AvailableAmount){
+            //evt.sender.data.data[index].Message = "Max " + holding.AvailableAmount;
+            holding.Message = "Max " + holding.AvailableAmount;
+        }else{
+            holding.Message = "";
+            //evt.sender.data.data[index].Message = " ";
+        }
     }
 }
