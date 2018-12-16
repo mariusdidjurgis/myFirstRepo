@@ -8,7 +8,7 @@
     
 <h2>Base kendo grid</h2>
 <div>
-    <base-grid [columns]="columns" (cellClose)="onCellClose($event)">
+    <base-grid [columns]="columns" (dataChange)="onChange($event)">
     </base-grid>
 </div>
 

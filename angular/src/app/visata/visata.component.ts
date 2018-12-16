@@ -1,5 +1,5 @@
 import { ApiService } from './../Shared/Services/api.service';
-import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupDescriptor, groupBy } from '@progress/kendo-data-query';
 import { GridComponent, AddEvent, EditEvent } from '@progress/kendo-angular-grid';
@@ -14,6 +14,10 @@ export class VisataComponent implements OnInit {
 
     public holdings: any[]; 
     public columns = [{
+        field: "Id",
+        type: 'text',
+        hidden: true
+    }, {
         field: "Message",
         title: "Message",
         type: 'text',
@@ -65,7 +69,7 @@ export class VisataComponent implements OnInit {
     }]
     //@ViewChild(GridComponent) private grid: GridComponent;
 
-    constructor(private api: ApiService, private renderer: Renderer2) {
+    constructor(private api: ApiService) {
         console.log(this);
      }
 
@@ -73,14 +77,14 @@ export class VisataComponent implements OnInit {
         this.api.getHoldings().subscribe((x: any) => { this.holdings = x; });
     }
 
-    public onCellClose(evt: any){
+    public onChange(evt: any){        
         let holding : Holding = evt.dataItem;
-        if(holding.ToTransferAmount > holding.AvailableAmount){
-            //evt.sender.data.data[index].Message = "Max " + holding.AvailableAmount;
+        const updatedHolding = evt.formGroup.value;
+        
+        if(updatedHolding.ToTransferAmount > holding.AvailableAmount){
             holding.Message = "Max " + holding.AvailableAmount;
         }else{
             holding.Message = "";
-            //evt.sender.data.data[index].Message = " ";
         }
     }
 }
