@@ -1,20 +1,28 @@
-  
-<h2 (click)="showBasic = !showBasic">basic kendo grid</h2>
-<div [hidden]="!showBasic">        
-    <basic-grid-wrapper [columns]="columns" [data]="holdings">
 
-    </basic-grid-wrapper>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 (click)="showBasic = !showBasic">basic kendo grid</h2>
+            <div [hidden]="!showBasic">        
+                <basic-grid-wrapper [columns]="columns" [data]="holdings">
+                </basic-grid-wrapper>
+            </div>
+        </div>
+    </div>    
 </div>
-    
-<h2>Base kendo grid</h2>
-<div>
-    <base-grid [columns]="columns" (dataChange)="onChange($event)">
-    </base-grid>
-</div>
 
-<h2>kendo grid</h2>
-<div>
-    <grid-wrapper [columns]="columns" [data]="holdings">
-
-    </grid-wrapper>
+<div class="row">
+    <div class="col-12">
+        <h2>Base kendo grid</h2>
+        <div>
+            <base-grid [columns]="columns" (dataChange)="onChange($event)">
+            </base-grid>
+        </div>
+        
+        <h2>kendo grid</h2>
+        <div>
+            <grid-wrapper [columns]="columns" [data]="holdings">
+            </grid-wrapper>
+        </div>
+    </div>
 </div>
