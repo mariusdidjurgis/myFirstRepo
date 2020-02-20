@@ -21,7 +21,7 @@ export class BaseGridComponent implements OnInit{
     @Input() columns: any;
     @Input() settings: any;
     @Input() BASE_URL: string = 'holding?fromAcc=123&toAcc=321';
-    private kSettings: any = {
+    public kSettings: any = {
         pageSize: 10,
         pageable: true,
         //sortable: true,

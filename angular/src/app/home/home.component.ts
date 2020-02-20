@@ -12,8 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit{
 
-    private title: string = "Home works";
-    private dynMessage: string = "some kind of message";
+    public title: string = "Home works";
+    public dynMessage: string = "some kind of message";
     @ViewChild("dynamicContainer", { read: ViewContainerRef }) container;
     @ViewChild("testForm") testForm: any;
     public account: any = {};
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit{
     }
 }
 
-function Console(message) : any {
+export function Console(message) : any {
     console.log('Our decorated class: ', message);
     return function(target: any){
         console.log('Our decorated class', target);

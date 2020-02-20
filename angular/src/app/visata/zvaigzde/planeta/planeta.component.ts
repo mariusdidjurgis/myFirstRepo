@@ -8,8 +8,8 @@ import { Component, OnInit, DoCheck, OnChanges, SimpleChanges, Input } from '@an
 export class PlanetaComponent implements OnInit, DoCheck, OnChanges {
 
     @Input() Name: string;  
-    private title: string = "Planet works";
-    private model: {} = {};
+    public title: string = "Planet works";
+    public model: any = {};
     constructor() { 
 
     }

@@ -21,7 +21,7 @@ export class GridWrapperComponent implements OnInit{
     @Input() data: Array<any>;
     @Input() settings: any;
     @Input() BASE_URL: string = 'holding?fromAcc=123&toAcc=321';
-    private kSettings: any = {
+    public kSettings: any = {
         pageSize: 10,
         pageable: true,
         //sortable: true,
@@ -34,7 +34,7 @@ export class GridWrapperComponent implements OnInit{
         navigable: true,
         height: 500
     }
-    protected state: State = { skip: 0, take: 10, sort: new Array<SortDescriptor>() };
+    public state: State = { skip: 0, take: 10, sort: new Array<SortDescriptor>() };
     private filter: any = {};
     private url: string = '';
     public loading: boolean = false;

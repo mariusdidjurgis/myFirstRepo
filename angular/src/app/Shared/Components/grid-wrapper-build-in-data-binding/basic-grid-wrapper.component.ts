@@ -21,7 +21,7 @@ export class BasicGridWrapperComponent implements OnInit{
     @Input() columns: any;
     @Input() data: Array<any>;
     @Input() settings: any;
-    private kSettings: any = {
+    public kSettings: any = {
         pageSize: 10,
         pageable: true,
         sortable: true,

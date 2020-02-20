@@ -12,6 +12,7 @@ import { Holding } from '../Shared/Types/holding';
 })
 export class VisataComponent implements OnInit {
 
+    public showBasic: boolean = true;
     public holdings: any[]; 
     public columns = [{
         field: "Id",
