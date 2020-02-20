@@ -8,8 +8,9 @@ import { ReplaySubject, BehaviorSubject } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
+    title = 'app';
+    public model: any = { name: 'theName' };
+    
     public returnReplaySubject5(): Observable<{}> {
         const obj: ReplaySubject<{}> = new ReplaySubject<{}>();
 
