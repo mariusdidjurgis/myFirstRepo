@@ -1,0 +1,366 @@
+
+=================================================================================
+==================================== docker =====================================
+=================================================================================
+what is it for? 	- for hosting application.
+docker 				- reduces the infrastructure and maintenance costs of supporting your existing application. 
+images				-
+containers			-
+
+docker images repository: https://hub.docker.com/
+
+https://github.sebank.se/pages/seb-common/Developer-garden/detail_pages/docker.html
+check for developer exception policy
+echo @{LastPolicyEnforcement = (Get-ItemProperty HKLM:\SOFTWARE\McAfee\Endpoint\Firewall -Name LastPolicyEnforcement).LastPolicyEnforcement; PolicyName = (Get-ItemProperty HKLM:\SOFTWARE\McAfee\Endpoint\Firewall -Name FireCore_FW_Rules).FireCore_FW_Rules}
+check for LAR
+echo (New-Object System.DirectoryServices.DirectorySearcher("(&(objectCategory=User)(samAccountName=$($env:username)))")).FindOne().GetDirectoryEntry().memberOf | Select-String -Pattern "CN=AG-WADM-$($env:ComputerName)" -quiet
+
+Dockerfile is used by docker build command to create a docker image
+
+docker version								- 
+docker build -t myimage -f Dockerfile .		- . current folder; myimage name of local repository that point to that image;
+docker build -t myimage .					- DockerFile by default
+	--pull									- pull the newer version of the image
+docker images								- shows list of docker images
+docker create myimage						- create a container based on image "myimage"
+docker rmi image_id							- deletes the image
+docker rmi myimage:latest					- to remove the image created by docker (use image_id or repository tag)
+docker pull image_name						- downloads the image
+docker create --name cont_name myimage		- You can override the automatic name of the container, that will be created, with a specific one by using --name parameter.
+docker ps -a								- list of all containers (ps proccess status)
+docker container ls -a -q					- lists containers (-a all) (-q select only id)
+docker image ls								-
+docker network ls 							-
+docker volume ls							-
+docker ps -a --no-trunc						- no truncation for commands...
+docker run image_id							- create a new container of an image, and execute the container. You can create N clones of the same image. The command is: docker run IMAGE_ID and not docker run CONTAINER_ID
+docker run -it microsoft/dotnet:nanoserver powershell
+docker run -p 8080:80 -it mcr-microsoft-com.repo.sebank.se/dotnet/core/sdk:3.1 AS builder
+docker run -p 8080:80 -it custody-docker.repo.sebank.se/dotnet-runtime-deps:latest
+docker run -p 8080:80 -it image-registry.openshift-image-registry.svc:5000/custody/settlement-internaliser-api:latest
+
+docker run -it --rm myimage					- automatically creates a container runs/attched to it and then stops and removes after you detache from it (-it interactive terminal)
+docker run -p 8080:80 -it --rm nginx		- The nginx app will be listening on port 80 inside the container and will map out on port 8080 on our host machine. You can see http trafic also.
+docker start container_name					- starts stopped the container by name
+docker attach container_name				- connects to the container and shows output (--sig-proxy=false ensures that CTRL + C won't stop the process in the container.)
+docker stop	container_name					- stops container
+docker rm container_name					- deletes container
+docker inspect container_name				- information about container
+docker search <some_tag>
+
+docker exec -it ubuntu <container-ID-or-name> bash 
+docker container exec -it myapp_cont /bin/bash	-- invokes bash command line 
+
+docker build -f "C:\work\CIF\SettlementInternaliser.Api.marius.didjurgis\Dockerfile" --force-rm -t settlementinternaliserapi:dev --target builder  --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=SettlementInternaliser.Api" "C:\work\CIF"
+
+docker history --no-trunc <image_name>		- shows all layers of this image
+docker rmi $(docker images -f "dangling=true" -q)	- to remove dangling images
+
+------------networks
+https://bszwej.medium.com/viewing-docker-container-https-traffic-b3435e0ed907
+in seb vpn, we need to remove docker-compose bridge networks
+NETWORK ID     NAME                                       DRIVER    SCOPE
+0365046d6dc0   bridge                                     bridge    local
+439d4fab5a06   core33_default                             bridge    local
+c4e659c44ab6   dockercompose5256534041112525226_default   bridge    local
+0b6e6ebbe789   host                                       host      local
+e24a9ddf307f   none                                       null      local
+
+docker network rm c4e
+https://seboverflow.sebank.se/question/problems-connecting-to-artifactory-from-local-docker/
+
+docker network ls					- shows docker networks
+docker network rm <network_id>		- remove network
+
+--------------- login 
+docker login openshift.repo.sebank.se
+
+
+Failure processing application bundle.
+Failed to determine location for extracting embedded files
+DOTNET_BUNDLE_EXTRACT_BASE_DIR is not set, and a read-write temp-directory couldn't be created.
+A fatal error was encountered. Could not extract contents of the bundle
+
+---------------working 
+1)
+C:\work\dotnet-docker-master\samples\aspnetapp
+docker build -t aspnetapp .
+docker run -it --rm -p 5000:80 --name aspnetcore_sample aspnetapp
+got to http://localhost:5000/
+
+2)
+C:\work\dockerapp
+docker build -t simple_img .
+docker run -it --rm --name simple_app simple_img
+OR
+docker create --name simple_cont simple_img
+docker start simple_cont
+docker attach simple_cont
+docker stop simple_cont
+
+FROM mcr-microsoft-com.repo.sebank.se/dotnet/core/sdk:3.0-alpine AS builder
+sometimes getting error: Get https://mcr-microsoft-com.repo.sebank.se/v2/: dial tcp 172.17.0.196:443: connect: no route to host
+
+3)C:\work\core33
+docker build -t core3_img .
+docker run -p 5000:5000 -it --rm core3_img
+
+3)docker run <IMAGE_ID> vs docker start <CONTAINER_ID>
+Run: create a new container of an image, and execute the container. You can create N clones of the same image. 
+The command is: docker run IMAGE_ID and not docker run CONTAINER_ID
+Start: Launch a container previously stopped. For example, if you had stopped a database with the command docker stop CONTAINER_ID, 
+you can relaunch the same container with the command docker start CONTAINER_ID, and the data and settings will be the same.
+
+docker build -t internaliser .
+docker build --no-cache --pull -t settlement-internaliser .
+docker run --rm -p 8080:8080 settlement-internaliser
+
+
+to reach the containers we use 3 diff namespaces: 
+*.publicus.sebank.se
+*.pignussebank.se
+*.servators.sebank.se
+
+---------------visual studio code
+https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
+https://code.visualstudio.com/docs/remote/containers
+
+mount file system to docker container to avoid rebuilding image	: https://vsupalov.com/rebuilding-docker-image-development/
+
+---------------editing files in docker container
+https://blog.softwaremill.com/editing-files-in-a-docker-container-f36d76b9613c
+ls
+vi README.md
+:q!					- quit/exit vim editor
+:wq
+
+DTR (docker trusted registry), Artifactory
+https://netcoresample5.publicus.sebank.se
+https://tfs.sebank.se/tfs/MSDE/CD-Demo/_wiki/wikis/CD-Demo.wiki?wikiVersion=GBwikiMaster&pagePath=%2FWindow%20Containers%3A%20Docker%20DTR%252DUCP%2FDocker%20(HOW%20to)%20instructions%3A%20Build%20and%20run%20Image%252DContainer%20locally%2FDocker%3A%20(Linux)%20image%20with%20complied%20code%20WEB&pageId=1075
+
+
+C:\work\CIF\SettlementInternaliser.Api.marius.didjurgis>dotnet run --project ./src/SettlementInternaliser.Api
+
+
+docker run hello-world --error response
+docker search <repository_to_search>
+docker run -p 4000:4000 docs/docker.github.io
+
+windows container:
+docker run -p 81:80 -d microsoft/iis:nanoserver 	-- -d detach
+docker pull microsoft/windowsservercore 
+
+TIM:
+The build/release pipeline has been created, there is just a small problem with alpines repository being blocked at firewall level.
+Which makes adding new things like tzdata impossible
+A redhat image called ubi-minimal does work it seems
+I have some other priorities before I can look into it, so you guys might want to take a look yourselves this week.
+It should be as simple as replacing the last stage in the dockerfile with openshift.repo.sebank.se/ubi8/ubi-minimal:latest
+Installing things like tzdata and icu-libs and setting some ENV stuff
+And changing the build target in the builder stage from musl-linux to linux
+
+
+https://medium.com/@kryvicz/installing-docker-and-gitlab-behind-corporate-isa-proxy-server-3e510ec9e8d3
+
+
+docker proxies
+gia.sebank:8080
+.sebank.se
+
+----------------------------dockerfile
+FROM node:12-alpine					- download image that application is based on
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+ 
+ 
+references:
+https://softchris.github.io/pages/dotnet-dockerize.html#create-a-dockerfile
+
+1)ar galima matyti docker images musu seb custody-docker repositorijose
+2)ngrep pagalba galima trackinti http requests
+3)core33:latest ir core33:dev kaip atsirado?
+
+
+==========================================================================================================
+====================================SebShift==============================================================
+==========================================================================================================
+https://console.sebshift.dev.sebank.se/api-explorer
+https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+https://confluence-general.sebank.se/display/SES/SEBShift+namespace+orders		- docs
+https://confluence-general.sebank.se/display/S2/SEBShift+2.0+Home
+
+https://console-openshift-console.apps.sandbox01.sebshift.sebank.se/dashboards	- opeshift2 sandbox (--server=https://api.sandbox01.sebshift.sebank.se:6443)
+
+how to retrieve server url
+https://stackoverflow.com/questions/46417232/what-server-url-should-be-used-for-the-oc-login-command-when-using-openshifts
+
+https://csp01.sebank.se:8443/console/											- sebshift1 
+https://console.sebshift.dev.sebank.se/											- sebshift2  Ad group: custody-dev-admin (--server https://api.dev01.sebshift.sebank.se:6443)
+7U_v8sZ-iJ1z4ZosHFwTZTtJDLhUHIj6hOYiefk2l-E
+
+https://console.sebshift.stg.sebank.se
+https://console.sebshift.prd.sebank.se
+https://csp-sandbox.sebank.se:8443/console/catalog								- sebshift1 sandbox
+
+
+https://splunk.sebank.se					- Logging
+https://operatorhub.io/						- 
+CRI-O 										- is an implementation of the Kubernetes CRI (Container Runtime Interface) to enable using OCI (Open Container Initiative) compatible runtimes.
+
+1)creating new application:
+	1. from container image using external registry (e.g. docker.io/openshiftroadshow/parksmap-katacoda:1.2.0)
+	2. from catalog using git repository
+	3. with odo tool, by invoking commands: odo create/build/push
+
+2)sebshift2 create new app:
+	1.builds 		-> image stream
+	2.workloads 	-> deployment configs
+	3.workloads 	-> pod
+	4.workloads 	-> Config Maps
+	5.networking 	-> service
+	6.networking 	-> routes
+
+3)sebshift api
+https://console.sebshift.dev.sebank.se/api-explorer
+
+https://artifacts-openshift-release-3-11.svc.ci.openshift.org/zips/
+C:\ws\oc\oc.exe
+
+https://csp01.sebank.se:8443/console/catalog
+https://csp01.sebank.se:8443/console/project/education-dev/catalog
+https://csp01.sebank.se:8443/console/project/education-dev/overview
+https://csp01.sebank.se:8443/console/project/custody-dev/overview
+
+https://tfs.sebank.se/tfs/MSDE/sebshift-courses/_build?definitionId=5283
+https://s4972b-education-dev.cumulus.sebank.se/HelloMetrics
+https://seboverflow.sebank.se/question/how-should-i-restore-nuget-packages-from-artifactory-with-azure-devops/
+http://prometheus.prometheus-dev.cumulus.sebank.se/graph?g0.range_input=1h&g0.moment_input=2019-09-18%2011%3A38%3A47&g0.expr=rate(getHelloMetrics%7Bapp%3D%22s4972b%22%7D%5B5m%5D)&g0.tab=1
+http://jhp-grafana-prometheus-metrics.cumulus.sebank.se/login
+
+https://confluence-general.sebank.se/pages/viewpage.action?pageId=57292911
+https://docs.openshift.com/enterprise/3.1/welcome/index.html
+
+oc start-build settlement-internaliser-artifact-builder -n custody-stage
+oc login https://csp01.sebank.se:8443 --token=CP_5lbG0v0AGwbjqZBZmViRTIFSr9eppSqvIBeRxOQ4
+oc login https://api.dev01.sebshift.sebank.se:6443		- 
+oc login --token=sha256~5CqZ0sTCN-YCZsmE7RoP5H9xD-RJe9D6pXTGz9n62_s --server=https://api.sandbox01.sebshift.sebank.se:6443
+curl -H "Authorization: Bearer access_token" "https://api.sandbox01.sebshift.sebank.se:6443/apis/user.openshift.io/v1/users/~"
+
+oc whoami --show-server									- shows the server url where you have logged in
+oc whoami 												- 
+https://openshift-clusterbase-url/oauth/token/request	- optain the login token
+oc projects												- show available projects
+oc project <project_name>								- use this project
+oc get services
+oc get imagestream 		oc get is 					
+
+oc whoami --show-context								- show current context a user is running against
+oc config get-clusters									- show the list of openshift clusters you have ever logged in
+oc config get-contexts									- show all the context ever been created, indicating what users you have logged-in as, and which projects you have worked on
+
+
+oc get bc												- show all build-configs
+oc describe bc yourBuildConfig							- show details about build-configuration named yourBuildConfig
+oc get is												- show all image streams
+oc describe is settlement-internaliser-api
+oc get dc												- List all deployment configs in the namespace
+
+oc create configmap settlement-internaliser2 --from-literal=KEYCLOAK_BASE_URL=https://sso.dev.sebank.se/auth --from-literal=KEYCLOAK_INITIAL_ACCESS_TOKEN=aa --from-literal=KEYCLOAK_REALM=master
+
+oc logs dc/<your dc>									- View logs from your deployment config:
+oc logs dc/<your dc> -f									- Stream logs from your deployment config:
+oc logs dc/<your dc> | grep -i error 					- Look for errors:
+oc get pods												- See pods:
+oc get pods -l app=<your app>							- Find a specific pod name based on the value in that pods LABEL (like app=appName)
+oc logs <pod name>										- Look at logs from a specific pod name: 
+oc rsh <pod name>										- Log in to a pod session
+oc rsync <pod-name>:/remote/dir/filename ./local/dir	- To copy a single file from the container to the local machine, the form of the command you need to run is:
+oc help													- help
+
+oc port-forward <pod-name> <local-port>:<remote:port>
+oc port-forward database-1-9xv8n 15432:5432
+
+PS C:\work\seb> kubectl create -f myfile.yaml
+I0304 18:17:38.667040   42032 request.go:645] Throttling request took 1.1489978s, request: GET:https://api.dev01.sebshift.sebank.se:6443/apis/apps.3scale.net/v1alpha1?timeout=32s
+oidcclient.iam.sebshift.io/s4972b created
+
+The operator will also create a secret containing the client's final name, discovery-url and client secret (if applicable). 
+The secret created in your namespace is prefixed keycloak- so it should be easy to find, furthermore the exact name is recorded in the status-section of the recently created resource.
+https://console.sebshift.dev.sebank.se/k8s/ns/education/secrets/keycloak-j5cnw
+autoConfigUrl
+clientId
+clientSecret
+registrationAccessToken
+
+https://console.sebshift.dev.sebank.se/k8s/ns/education/secrets/keycloak-j5cnw
+
+
+Run OpenShift Locally with CodeReady Containers
+CodeReady Containers allows you to run a minimal, pre-configured OpenShift 4 cluster on your local machine. 
+The project supports Windows 10, macOS, and Linux. To find out more or download CodeReady Containers, visit https://developers.redhat.com/products/codeready-containers/overview
+
+1)Why appsettings.json is empty, but _configuration["KEYCLOAK_BASE_URL"] returns a value
+#error: unable to recognize "D:\\BA\\41\\_work\\134\\s\\openshift\\overlays\\dev\\oidclient.yaml": no matches for kind "OidcClient" in version "iam.sebshift.io/v1alpha1"
+error: unable to recognize "myfile.yaml": no matches for kind "OidcClient" in version "iam.sebshift.io/v1alpha1"
+
+------------------from sebshift lab
+Developer -> add -> select template -> ' SEBShift .NET Builder Image', set te name to your s-id -> paste git url : https://github.sebank.se/s4972b/dotnet-core-app.git
+go to cmd:
+C:\work\seb\dotnet-core-app> dotnet build
+C:\work\seb\dotnet-core-app> dotnet publish --configuration Release --output out
+oc start-build nameOfBuildConfig --from-dir=out --follow
+
+oc create configmap s4972b --from-literal=ORA_DB_NAME=s4972bdb --from-li
+teral=ORA_DB_SERVER=s4972bserver
+
+https://github.sebank.se/sebshift-courses/dotnet-core-app
+https://tfs.sebank.se/tfs/MSDE/CIF/_git/SettlementInternaliser.Web
+Personal Access Tokens:
+zyhmffuu7wjxp63vl3kll53s5crxk5xd2vob7fvx2frz4gyv5fya
+
+oc new-app https://github.sebank.se/sebshift/dotnetcore-example
+
+oc new-app https://github.sebank.se/sebshift/dotnet-core.git
+
+oc rsync s4972b-5-zrjm4:/opt/app-root/src c:/
+oc serviceaccounts get-token tfs-deployer -n education-dev
+
+https://prometheus.io/
+GrafanaDashboard
+
+rate(getHelloMetrics{kubernetes_namespace="education-dev",app="s4972b"}[5m])
+
+annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: '8080'
+        prometheus.io/scrape: 'true'
+		
+		
+getHelloMetrics{app="s4972b"}
+
+rate(getHelloMetrics{app="s4972b"}[5m])
+oc patch dc/sid -p '{"spec":{"template":{"metadata":{"annotations":{"prometheus.io/path":"/metrics", "prometheus.io/port":"8080", "prometheus.io/scrape":"true"}}}}}' -n education-dev
+oc patch dc/s4972b -p '{"spec":{"template":{"metadata":{"annotations":{"prometheus.io/path":"/metrics", "prometheus.io/port":"8080", "prometheus.io/scrape":"true"}}}}}' -n education-dev
+
+
+Adimistrator -> Workloads -> deployment configs
+OR
+Developer -> Builds -> Build configs
+
+Adimistrator -> Workloads -> config maps
+Adimistrator -> Builds -> Build configs
+
+
+==========================================================================================================
+====================================linux commands==============================================================
+==========================================================================================================
+
+printenv					- prints all environment variables
+printenv | grep name		- search for particular variable
+echo $env_var				- shows environment variable value
+env  						- Display all exported environment or run a program in a modified environment.
+pwd
+ls							- list files
