@@ -8,8 +8,13 @@ what is it for? 	- for hosting application.
 docker 				- reduces the infrastructure and maintenance costs of supporting your existing application. 
 images				-
 containers			-
+cluster				- 
+https://dtr.sebank.se/repositories	- sebank docker repositories
+https://dtr-acc.sebank.se/			- sebank docker repositories
+https://dtr-tst.sebank.se/			-
 
 docker images repository: https://hub.docker.com/
+dokcer local registry: https://www.docker.com/blog/how-to-use-your-own-registry/
 
 https://github.sebank.se/pages/seb-common/Developer-garden/detail_pages/docker.html
 check for developer exception policy
@@ -20,19 +25,23 @@ echo (New-Object System.DirectoryServices.DirectorySearcher("(&(objectCategory=U
 Dockerfile is used by docker build command to create a docker image
 
 docker version										- 
+docker info											- 
+docker system info									- 
 docker build -t myimage -f Dockerfile .				- . current folder; myimage name of local repository that point to that image;
 docker build -t myimage .							- DockerFile by default
+	--pull											- pull the newer version of the image
 docker images										- shows list of docker images
+docker image ls										- 
 docker create myimage								- create a container based on image "myimage"
 docker rmi image_id									- deletes the image
 docker rmi myimage:latest							- to remove the image created by docker (use image_id or repository tag)
-docker rmi $(docker images -f "dangling=true" -q)	- to remove dangling images
-docker pull image_name								- pull the newer version of the image
-docker pull microsoft/windowsservercore 
+docker image push									- push image to repository, tag it before push
+docker tag sirepwimg:1.1 s4972b-course-repo-docker.repo.sebank.se/sirepwimg:latest
+docker image push s4972b-course-repo-docker.repo.sebank.se/sirepwimg
+docker pull image_name								- downloads the image
 docker create --name cont_name myimage				- You can override the automatic name of the container, that will be created, with a specific one by using --name parameter.
 docker ps -a										- list of all containers (ps proccess status)
 docker container ls -a -q							- lists containers (-a all) (-q select only id)
-docker image ls										-
 docker network ls 									-
 docker volume ls									-
 docker ps -a --no-trunc								- no truncation for commands...
@@ -58,13 +67,47 @@ docker container exec -it my_mysql ls /var						- To execute a command inside th
 docker exec -it nginx bash										- exec runs a command inside a container. In this case you can initiate bash command line utility inside nginx container 
 docker container exec -it <container> /bin/bash					- attach to linux container and will create a new Bash session inside the container
 
-docker commit container_id images_name:tag						- creates an images from container						
-docker commit conainer_name new_image_name						- creates a new image from container
+docker cp <container_name>:/usr/app/appsettings.json ./		- copy files from container to local file system
+docker history --no-trunc <image_name>						- shows all layers of this image
+docker rmi $(docker images -f "dangling=true" -q)			- to remove dangling images
+docker system prune -a										- 
+docker builder prune										- removes image cache
 
-docker history --no-trunc <image_name>							- shows all layers of this image
+docker swarm init
+docker service ls/create/ps/rm								- creates a new service
+docker service create --name web --publish 8080:80 nginx
+docker service inspect <service_id_name>					- 
+docker service rm <service_name>							- 
+docker service scale <service-name>=3
+docker node ls												- list nodes
+docker node ps												- list containers on the node
+docker node ps <node_name1> <node_name2>					- list containers on the specified nodes
+docker node inspect <node_name>								- shows detail information about node
+docker service logs	<servie_name>							- 
+export DOCKER_HOST=192.168.99.212							- switch to another node Powershell command: $env:DOCKER_HOST='192.168.99.212'
+
+https://stedolan.github.io/jq/								- jq tool for the json output formating
+docker inspect 89db758135a4 | jq .[0] | jq .State			- show all the values in the state field
+docker inspect 89db758135a4 | jq .[0] | jq keys				- show all the keys
+
+setup multiple nodes:
+1)docker swarm init
+2)install docker-machine
+3)create manager node
+4)add worker node to mnager node	(docker swarm join-token worker)
+5)install docker-swarm-visualiser for better UI to see runing nodes
 
 
-------------networks
+ab -n 1000 -c 4 http://127.0.0.1:3000/customer/1			- makes 1000 http requests
+=================================================================================
+==================================== docker-compose =============================
+================================================================================= 
+docker-compose -f <compose.yml> up
+docker-compose -f <compose.yml> stop <container_name>
+
+=================================================================================
+==================================== networks ===================================
+=================================================================================
 https://bszwej.medium.com/viewing-docker-container-https-traffic-b3435e0ed907
 in seb vpn, we need to remove docker-compose bridge networks
 NETWORK ID     NAME                                       DRIVER    SCOPE
@@ -77,26 +120,21 @@ e24a9ddf307f   none                                       null      local
 docker network rm c4e
 https://seboverflow.sebank.se/question/problems-connecting-to-artifactory-from-local-docker/
 
-docker network ls					- shows docker networks
-docker network rm <network_id>		- remove network
+docker network ls						- shows docker networks
+docker network rm <network_id>			- remove network
+docker network inspect <network_name>
+docker network inspect ingress
+docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" <running_container_name>		- get the IP address of a known container
+docker search <repository_to_search>
 
 --------------- login 
 docker login openshift.repo.sebank.se
+docker login https://custody-docker.repo.sebank.se
+docker login docker.repo.sebank.se
+docker login s4972b-course-repo-docker.repo.sebank.se
+docker login --username foo --password pass
 
------------- angular 
-https://wkrzywiec.medium.com/build-and-run-angular-application-in-a-docker-container-b65dbbc50be8
-https://dzone.com/articles/how-to-dockerize-angular-app
-https://mherman.org/blog/dockerizing-an-angular-app/
-
------------- dotnet
-https://stackify.com/a-start-to-finish-guide-to-docker-for-net/#
-https://github.com/friism/musicstore
-
------------- nodejs
-https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-
------------- dockerfile commands
-https://docs.docker.com/engine/reference/builder/
+C:\Users\s4972b\.docker\config.json		- check credentials 
 
 ---------------working 
 1)
@@ -123,6 +161,29 @@ Solution: you need to delete bridge network
 docker build -t core3_img .
 docker run -p 5000:5000 -it --rm core3_img
 
+3)
+to reach the containers we use 3 diff namespaces: 
+*.publicus.sebank.se
+*.pignussebank.se
+*.servators.sebank.se
+
+4) 
+Failure processing application bundle.
+Failed to determine location for extracting embedded files
+DOTNET_BUNDLE_EXTRACT_BASE_DIR is not set, and a read-write temp-directory couldn't be created.
+A fatal error was encountered. Could not extract contents of the bundle
+
+ENV DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/.net
+
+5)docker angular set expose port to 8080 before building image locally
+https://stackoverflow.com/questions/46778868/ng-serve-not-working-in-docker-container
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
+
+
+6)docker compose angular
+https://mherman.org/blog/dockerizing-an-angular-app/
+
 ---------------visual studio code
 https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
 https://code.visualstudio.com/docs/remote/containers
@@ -139,13 +200,13 @@ vi README.md
 --------------- proxies
 https://medium.com/@kryvicz/installing-docker-and-gitlab-behind-corporate-isa-proxy-server-3e510ec9e8d3
 
+DTR (docker trusted registry), Artifactory
+https://netcoresample5.publicus.sebank.se
+https://tfs.sebank.se/tfs/MSDE/CD-Demo/_wiki/wikis/CD-Demo.wiki?wikiVersion=GBwikiMaster&pagePath=%2FWindow%20Containers%3A%20Docker%20DTR%252DUCP%2FDocker%20(HOW%20to)%20instructions%3A%20Build%20and%20run%20Image%252DContainer%20locally%2FDocker%3A%20(Linux)%20image%20with%20complied%20code%20WEB&pageId=1075
+
 docker proxies
 gia.sebank:8080
 .sebank.se
-
----------networks
-docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" <running_container_name>		- get the IP address of a known container
-
 
 ----------------------------dockerfile
 FROM node:12-alpine					- download image that application is based on
@@ -161,12 +222,95 @@ https://docs.docker.com/docker-for-windows/
 https://hub.docker.com/_/microsoft-dotnet-core-aspnet/
 https://github.com/dotnet/dotnet-docker/blob/master/samples/dotnetapp/README.md
 
-
 1)ar galima matyti docker images musu seb custody-docker repositorijose
 2)ngrep pagalba galima trackinti http requests
 3)core33:latest ir core33:dev kaip atsirado?
 4)kaip perduoti environent argumentus i docker container
 ARG buildArg=valueOfBuildArg
+5)what is the difference?
+FROM docker-remote.repo.sebank.se/node:10-alpine
+FROM custody-docker.repo.sebank.se/nginx-angular:latest
+FROM openshift.repo.sebank.se/rhscl/nginx-18-rhel7:latest
+
+6) what is sebshift Repositories?
+
+7)
+BC rodo output to: s4972b-course-repo-docker.repo.sebank.se/s4972b:latest
+taciau artifactory yra toks: s4972b-course-repo-docker-local
+yra sukurtas secret: s4972b-course-repo-repo-docker-secret
+key:	.dockerconfigjson
+value:	{"auths":{"s4972b-course-repo-docker.repo.sebank.se":{"email":"unused","auth":"czQ5NzJiLWNvdXJzZS1yZXBvLXJlcG8tdXNlcjoka28qezJ+Mw=="}}}
+
+==========================================================================================================
+====================================Kubernetes==============================================================
+==========================================================================================================
+https://github.com/kubernetes/examples
+https://github.com/DanWahlin/DockerAndKubernetesCourseCode
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard
+kubectl --help
+kubectl version
+kubectl cluster-info							- cluster 
+kubectl get pods								- list all pods
+kubectl get pod <podName> -o yaml|json			- shows pod i yaml or json format
+kubectl get deployments --show-labels
+kubectl get deployments -l app=nginx			- get all deployments with a special label
+kubectl scale deployment <deploymentName> --replicas=5
+kubectl get all									- list all resources
+kubectl describe [pod | deployment] <podName|depName>
+kubectl run <podname> --image=nginx:alpine		- crete new pod 
+kubectl create/apply 							- create new 
+kubectl port-forward <podname> 8080:80		- forward port to outside of kubernetes
+kubectl port-forward mypod 8080:80
+kubectl port-forward deployment/<deploymentName> 8080:80
+kubectl port-forward service/<serviceName> 8080:80
+kubectl delete pod mypd							- delete a pod
+kubectl delete -f file.pod.yml
+kubectl exec <podname> -- curl -s http://podIP	- shell into a pod and test a url. Add -c <containerId> if multi containers are running
+kubectl exec <podname> -it sh					- shell into pod, add curl (apk add curl) and use curl (curl -s http://podIP)
+kubectl apply -f file.yaml						- creates/updates resources from yaml file
+kubectl apply -f file.yaml --save-config		- causes the resource's configuration settings to be saved in the annotations
+kubectl logs <podName>								- view logs for pod container
+kubectl logs <podName> -c <containerName>
+kubectl logs -p <podName>							- view logs for previously running pod
+kubectl logs -f <podName>							- stream a pod's logs		
+kubectl get oidcclient [name] -o jsonpath='{.status.oidcSecretName}'					- gets associated secret generated by oidcClient
+kubectl get oidcclient settlement-internaliser -o jsonpath='{.status.oidcSecretName}'	
+kubectl create -f myfile.yaml															- creates kubernetes object from the file content
+kubectl get oidcclient								- get list of oidClients 
+kubectl delete oidcClient mytemp-client				- delete oidClient
+
+deployments: 
+rolling updates
+blue-green deployments
+canary deployments
+rollbacks
+
+volumes types:
+emptyDir
+persistentVolume
+persistentVolumeClaim
+storageClass
+
+configMaps & secrets
+kubectl get cm <configName> -o yaml
+kubectl create configmap <cmname> --from-file=[path-to-file]
+kubectl create configmap <cmname> --from-env-file=[path-to-file]
+kubectl create configmap <cmname> --from-literal=apiUrl=https://my-api --from-literal=otherKey=otherValue
+kubectl get secrets
+kubectl create secret generic my-secret --from-literal=pwd=mypassword				- create a simple secret and store securely in kubernetes
+kubectl create secret generic my-secret --from-file=ssh-privatekey=~/.ssh/id_rsa --from-file=ssh-publickey=~/.ssh/id_rsa.pub
+kubectl create secret tls tls-secret --cert=path/to/tls.cert						- create a secret from a key pair
+
+λ kubectl get oidcclient initial-development-key -o jsonpath='{}'
+'{"apiVersion":"iam.sebshift.io/v1alpha1","kind":"OidcClient","metadata":{"creationTimestamp":"2021-03-01T12:24:04Z","finalizers":["finalizer.oidcclients.iam.sebshift.io"],"generation":2,"managedFields":[{"apiVersion":"iam.sebshift.io/v1alpha1","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{".":{},"f:confidential":{},"f:flows":{}}},"manager":"Mozilla","operation":"Update","time":"2021-03-01T12:41:09Z"},{"apiVersion":"iam.sebshift.io/v1alpha1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:finalizers":{".":{},"v:\"finalizer.oidcclients.iam.sebshift.io\"":{}}},"f:spec":{"f:redirectUris":{}},"f:status":{".":{},"f:observedGeneration":{},
+f:oidcSecretName":{}}},"manager":"okhttp","operation":"Update","time":"2021-03-01T12:41:10Z"}],"name":"initial-development-key","namespace":"custody","resourceVersion":"468367999","selfLink":"/apis/iam.sebshift.io/v1alpha1/namespaces/custody/oidcclients/initial-development-key","uid":"f71f004a-0fdd-48e0-9a6b-41e21cf43421"},"spec":{"confidential":false,"flows":["authorizationCode"],"redirectUris":["http://localhost/*","http://localhost:4200/*"]},
+"status":{"observedGeneration":2,"oidcSecretName":"keycloak-wzk9k"}}'
+clientId: initial-development-key_custody_dev01
+autoConfigUrl: https://sso.dev.sebank.se/auth/realms/master/.well-known/openid-configuration
+clientSecret: 271934a5-bc41-4505-af01-70ef74878597
+registrationAccessToken: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwZGM5OThiYi00ZTkzLTQzN2MtOTdiYS04ZjYzMDI1NmVlYmUifQ.eyJleHAiOjAsImlhdCI6MTYxNDYwMjQ3MCwianRpIjoiOWI3ODgwZjUtOGJhMC00MzE3LThlMmQtYzI5Nzc0MzljMGFlIiwiaXNzIjoiaHR0cHM6Ly9zc28uZGV2LnNlYmFuay5zZS9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJodHRwczovL3Nzby5kZXYuc2ViYW5rLnNlL2F1dGgvcmVhbG1zL21hc3RlciIsInR5cCI6IlJlZ2lzdHJhdGlvbkFjY2Vzc1Rva2VuIiwicmVnaXN0cmF0aW9uX2F1dGgiOiJhdXRoZW50aWNhdGVkIn0.ZcT4XCjG6KMgOEXBNj4VarFzLruO3OBC59B5tIHIdgE
+
+
 
 ==========================================================================================================
 ====================================SebShift==============================================================
@@ -177,6 +321,9 @@ https://github.com/kubernetes/community/blob/master/contributors/devel/sig-archi
 https://confluence-general.sebank.se/display/SES/SEBShift+namespace+orders		- docs
 https://confluence-general.sebank.se/display/S2/SEBShift+2.0+Home
 
+https://developers.redhat.com/blog/2019/11/27/handling-angular-environments-in-continuous-delivery-with-red-hat-openshift/	- config.json to replace with environment.ts
+https://medium.com/angular-in-depth/handling-angular-environments-in-continuous-delivery-eeaee96f0aae						- (config.json replace) overwrite angular environment files on different environment
+
 https://console-openshift-console.apps.sandbox01.sebshift.sebank.se/dashboards	- opeshift2 sandbox (--server=https://api.sandbox01.sebshift.sebank.se:6443)
 
 how to retrieve server url
@@ -184,6 +331,7 @@ https://stackoverflow.com/questions/46417232/what-server-url-should-be-used-for-
 
 https://csp01.sebank.se:8443/console/											- sebshift1 
 https://console.sebshift.dev.sebank.se/											- sebshift2  Ad group: custody-dev-admin (--server https://api.dev01.sebshift.sebank.se:6443)
+https://console.sebshift.stg.sebank.se/
 7U_v8sZ-iJ1z4ZosHFwTZTtJDLhUHIj6hOYiefk2l-E
 
 https://console.sebshift.stg.sebank.se
@@ -231,12 +379,15 @@ https://docs.openshift.com/enterprise/3.1/welcome/index.html
 oc start-build settlement-internaliser-artifact-builder -n custody-stage
 oc login https://csp01.sebank.se:8443 --token=MY_TOKEN
 oc login https://api.dev01.sebshift.sebank.se:6443		- 
-oc login --token=MY_TOKEN --server=https://api.sandbox01.sebshift.sebank.se:6443
+oc login --token=sha256~7Md8DFKCTjaIGTKkiOacn0LNuVRCEfYWyEZ94-oY8ZA --server=https://api.sandbox01.sebshift.sebank.se:6443
+oc login --token=sha256~lDEvZJru1rkDs24KJaEW9pIDCB1R1U_CbPZh7QyECz0 --server=https://api.dev01.sebshift.sebank.se:6443
+oc login --token=sha256~6gxC9CBTP3jlXU24dsNwtSHJG2i9KXNEsWpltgB-HGs --server=https://api.stage01.sebshift.sebank.se:6443
 curl -H "Authorization: Bearer access_token" "https://api.sandbox01.sebshift.sebank.se:6443/apis/user.openshift.io/v1/users/~"
 
 oc whoami --show-server									- shows the server url where you have logged in
-oc whoami 												- 
+oc whoami 												- -t = show token; -cshow context
 https://openshift-clusterbase-url/oauth/token/request	- optain the login token
+oc status												- gets all project 
 oc projects												- show available projects
 oc project <project_name>								- use this project
 oc get services
@@ -246,27 +397,72 @@ oc whoami --show-context								- show current context a user is running against
 oc config get-clusters									- show the list of openshift clusters you have ever logged in
 oc config get-contexts									- show all the context ever been created, indicating what users you have logged-in as, and which projects you have worked on
 
-
-oc get bc												- show all build-configs
-oc describe bc yourBuildConfig							- show details about build-configuration named yourBuildConfig
-oc get is												- show all image streams
-oc describe is settlement-internaliser-api
-oc get dc												- List all deployment configs in the namespace
+oc <action> <object_type> <object_name_or_id>
+oc get route
+oc get imagestream 										- is
+oc get build 
+oc get buildconfig 										- bc
+oc get bc <bc-name> -o yaml > mybc.yaml					- save buildConfiguration to local file
+oc get deploymentconfig 								- dc 
+oc get horizontalpodautoscaler 
+oc get service 
+oc get replicationcontroller 
+oc get pod
+oc get all --selector app=settlement-internaliser -o name
+oc get repo												- gets all repositories
+oc delete all --selector app=nbviewer
+oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=jupyterhub
+oc describe route/nbviewer
+oc get route test -o yaml > route.yaml
+oc replace route test -f route.yaml 
+oc delete route test
+oc apply route test -f route.yaml
 
 oc create configmap settlement-internaliser2 --from-literal=KEYCLOAK_BASE_URL=https://sso.dev.sebank.se/auth --from-literal=KEYCLOAK_INITIAL_ACCESS_TOKEN=aa --from-literal=KEYCLOAK_REALM=master
-
+oc create -f deploymentConfig.yaml -n education
+oc create -f service.yaml -n education
+oc create -f route.yaml -n education
+oc create -f configmap.yaml -n education
+oc create -f secret.yaml -n education
+oc get pods -l app=<your app>							- Find a specific pod name based on the value in that pods LABEL (like app=appName) (e.g. -l key1=value1,key2=value2)
+oc get pod -l name=settlement-internaliser-api
+oc get route --selector app=settlement-internaliser		- --selector or -l use a label selector to restrict the query to a set of resource objects.
+oc get routes --selector app=settlement-internaliser
+oc describe bc yourBuildConfig							- show details about build-configuration named yourBuildConfig
+oc describe is settlement-internaliser-api
 oc logs dc/<your dc>									- View logs from your deployment config:
 oc logs dc/<your dc> -f									- Stream logs from your deployment config:
 oc logs dc/<your dc> | grep -i error 					- Look for errors:
 oc get pods												- See pods:
-oc get pods -l app=<your app>							- Find a specific pod name based on the value in that pods LABEL (like app=appName)
+oc debug <pod_name>
+
+oc get pods settlement-internaliser-api-3-zkmmx -o jsonpath='{.spec.containers[0].env}'
+oc get dc liquidity-management-api -o json > liq.json	- save deployment config in json file locally
+oc explain dc.spec.template.spec.containers.env.valueFrom.configMapKeyRef.optional
+oc scale dc <nameOfYourDC> --replicas=0					- scale down pods
+
 oc logs <pod name>										- Look at logs from a specific pod name: 
 oc rsh <pod name>										- Log in to a pod session
 oc rsync <pod-name>:/remote/dir/filename ./local/dir	- To copy a single file from the container to the local machine, the form of the command you need to run is:
 oc help													- help
 
+oc edit dc <deploy-config-example>						- 						
+oc delete pod <name-of-your-pod>						- If you change something in volumes or configmaps you need to delete pod for his restart and pod will restart. 
+oc rollout latest <deploy-config-example>				- Or better still trigger a new deployment by running
+
+oc create secret generic <secret_name> --from-literal=clientSecret=<secret> -n openshift-config		-to generate a new secret
+
 oc port-forward <pod-name> <local-port>:<remote:port>
 oc port-forward database-1-9xv8n 15432:5432
+
+oc get serviceaccount /generate access token
+https://access.redhat.com/solutions/2972601
+oc get serviceaccount									- 
+oc create serviceaccount ${SERVICE_ACCOUNT} -n ${NAMESPACE}
+oc sa get-token -n ${NAMESPACE} ${SERVICE_ACCOUNT}
+oc serviceaccounts get-token tfs-deployer -n education
+TOKEN=$(oc sa get-token -n education deployer)
+oc login --token=${TOKEN}
 
 PS C:\work\seb> kubectl create -f myfile.yaml
 I0304 18:17:38.667040   42032 request.go:645] Throttling request took 1.1489978s, request: GET:https://api.dev01.sebshift.sebank.se:6443/apis/apps.3scale.net/v1alpha1?timeout=32s
@@ -291,15 +487,74 @@ The project supports Windows 10, macOS, and Linux. To find out more or download 
 #error: unable to recognize "D:\\BA\\41\\_work\\134\\s\\openshift\\overlays\\dev\\oidclient.yaml": no matches for kind "OidcClient" in version "iam.sebshift.io/v1alpha1"
 error: unable to recognize "myfile.yaml": no matches for kind "OidcClient" in version "iam.sebshift.io/v1alpha1"
 
+.\oc.exe apply -k $(System.DefaultWorkingDirectory)\$(Kustomize Overlay) -n $(SebShift Namespace)
+- name: 'Kustomize Overlay'
+	value: 'openshift\overlays\dev'
+- name: 'SebShift Namespace'
+	value: 'custody'
+- name: 'Docker Image'
+	value: 'custody-docker.repo.sebank.se/vpc-account-info'
+- name: 'Docker tag'
+	value: '$(Build.SourceVersion)'
+- name: 'Application'
+	value: 'vpc-account-info'
+
+.\oc.exe apply -k $(System.DefaultWorkingDirectory)\$(Kustomize Overlay) -n $(SebShift Namespace)
+oc apply -k C:\work\CIF\SettlementInternaliser.Web.marius.didjurgis\openshift\overlays\dev -n education
+oc apply -k C:\work\CIF\VpcAccountInfo.Web.marius.didjurgis\openshift\overlays\dev -n education
+oc tag custody-docker.repo.sebank.se/vpc-account-info:latest vpc-account-info:latest -n education
+oc rollout latest dc/vpc-account-info -n education
+oc rollout status --watch=true dc/vpc-account-info  -n education
+
+odo 				- Developer cli
+odo app list		- List the applications in the current project
+odo component list
+odo app delete <application_name>
+
 ------------------from sebshift lab
-Developer -> add -> select template -> ' SEBShift .NET Builder Image', set te name to your s-id -> paste git url : https://github.sebank.se/s4972b/dotnet-core-app.git
+--lab 1-8 build and host application using image-streams
+Developer -> add -> select template -> ' SEBShift .NET Builder Image', set the name to your s-id -> paste git url : https://github.sebank.se/s4972b/dotnet-core-app.git
+Add to spec/template/spec/containers: 
+  livenessProbe:
+	failureThreshold: 3
+	httpGet:
+	  path: /health
+	  port: 8080
+	  scheme: HTTP
+	periodSeconds: 10
+	successThreshold: 1
+	timeoutSeconds: 1
+  readinessProbe:
+	failureThreshold: 3
+	httpGet:
+	  path: /health
+	  port: 8080
+	  scheme: HTTP
+	periodSeconds: 10
+	successThreshold: 1
+	timeoutSeconds: 1
+			
 go to cmd:
 C:\work\seb\dotnet-core-app> dotnet build
 C:\work\seb\dotnet-core-app> dotnet publish --configuration Release --output out
+oc get bc
 oc start-build nameOfBuildConfig --from-dir=out --follow
+oc start-build s4972b2 --from-dir=out --follow
 
 oc create configmap s4972b --from-literal=ORA_DB_NAME=s4972bdb --from-li
 teral=ORA_DB_SERVER=s4972bserver
+
+9 lab) To create a repository in https://repo.sebank.se/artifactory/webapp/#/packages/docker
+oc apply -f repo.yaml -n education				- create a repository (s4972b-course-repo-docker-local)
+
+s4972b-course-repo-docker-repo-permission 		- repo-permission
+repourl: https://repo.sebank.se/artifactory/s4972b-course-repo-docker
+s4972b-course-repo-docker-local					- repository name
+
+<s-id>-course-repo-docker.repo.sebank.se/<image-name>:latest
+
+13 lab) Deploy to sebshift by pushing image to the repository and pulling from it in each of the cluster environment.
+
 
 https://github.sebank.se/sebshift-courses/dotnet-core-app
 https://tfs.sebank.se/tfs/MSDE/CIF/_git/SettlementInternaliser.Web
@@ -313,9 +568,11 @@ oc new-app https://github.sebank.se/sebshift/dotnet-core.git
 oc rsync s4972b-5-zrjm4:/opt/app-root/src c:/
 oc serviceaccounts get-token tfs-deployer -n education-dev
 
+
+
+
 https://prometheus.io/
 GrafanaDashboard
-
 rate(getHelloMetrics{kubernetes_namespace="education-dev",app="s4972b"}[5m])
 
 annotations:
@@ -323,7 +580,7 @@ annotations:
         prometheus.io/port: '8080'
         prometheus.io/scrape: 'true'
 		
-		
+
 getHelloMetrics{app="s4972b"}
 
 rate(getHelloMetrics{app="s4972b"}[5m])
@@ -335,9 +592,9 @@ Adimistrator -> Workloads -> deployment configs
 OR
 Developer -> Builds -> Build configs
 
-Adimistrator -> Workloads -> config maps
-Adimistrator -> Builds -> Build configs
-
+RepoOperator (artifactory operator)		- responsible for creating repo object and creating secret for the user in the sebshift
+FireWall operator(egress IP)			- kind: NetworkDestination
+CI/CD									- https://github.sebank.se/sebshift/ci-cd-wiki
 
 ==========================================================================================================
 ====================================linux commands==============================================================
