@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "b285c0fb-b81b-4364-856a-d93e31711ad3",
+		"name": "penalties",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9782066"
+	},
+	"item": [
+		{
+			"name": "https://penalties-api-custody.sebshift.dev.sebank.se/depositories",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905248",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"useBrowser": false,
+						"authUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://penalties-api-custody.sebshift.prd.sebank.se/health"
+			},
+			"response": []
+		},
+		{
+			"name": "https://penalties-api-custody.sebshift.dev.sebank.se",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905255",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"useBrowser": false,
+						"authUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"PageNumber\":1,\r\n   \"ContinuationIndicator\":\"MORE\",\r\n   \"SendersMessageReference\":\"MDtest122102\",\r\n   \"FunctionOfMessage\":\"PENA\",\r\n   \"PreparationDate\":\"2022-12-15\",\r\n   \"StatementDateTime\":\"2022-12-15\",\r\n   \"Frequency\":\"DAIL\",\r\n   \"UpdateIndicator\":\"COMP\",\r\n   \"StatementStructure\":\"PENA\",\r\n   \"SafekeepingAccount\":\"AM\",\r\n   \"ActivityFlag\":true,\r\n   \"SendersBic\":\"VPCSSESSXXX\",\r\n   \"Penalties\":[\r\n      {\r\n         \"StatementPeriodFrom\":\"2022-12-01\",\r\n         \"StatementPeriodTo\":\"2022-12-31\",\r\n         \"PenaltyListTypeIndicator\":\"FWIS\",\r\n         \"PenaltyCurrencies\":[\r\n            {\r\n               \"Currency\":\"SEK\",\r\n               \"PenaltyDetectionDateTime\":\"2022-12-15\",\r\n               \"CashPenaltyPaymentReference\":\"\",\r\n               \"CounterpartyAccountServiceProviderDepositary\":\"VPCSSESSXXX\",\r\n               \"PartyCapacityIndicator\":\"CSDP\",\r\n               \"GlobalNetAmountCurrency\":\"SEK\",\r\n               \"GlobalNetAmount\":15150,\r\n               \"SebRelatedPartyInfo\":\"56971012763\",\r\n               \"PenaltyCounterParties\":[\r\n                  {\r\n                     \"CounterpartyAccountServicerInfo\":\"ESSEDKKKXXX\",\r\n                     \"CounterpartyRelatedPartyInfo\":\"VPCSSESSXXX\",\r\n                     \"PartyCapacityIndicator\":\"CSDP\",\r\n                     \"BilateralNetAmount\":460,\r\n                     \"BilateralNetAmountCurrency\":\"SEK\",\r\n                     \"PenaltyDetails\":[\r\n                        {\r\n                           \"PenaltyCommonReference\":\"MD122102\",\r\n                           \"PenaltyReference\":\"MDTEST122102\",\r\n                           \"PenaltyTypeIndicator\":\"SEFP\",\r\n                           \"CalculationMethodIndicator\":\"SECU\",\r\n                           \"AmountAggregationFlag\":true,\r\n                           \"PenaltyStatus\":\"ACTV\",\r\n                           \"ActiveStatusReason\":\"NEWP\",\r\n                           \"ComputedAmount\":2000,\r\n                           \"ComputedAmountCurrency\":\"SEK\",\r\n                           \"NumberOfDays\":1,\r\n                           \"CalculationDetails\":[\r\n                              {\r\n                                 \"PenaltyDate\":\"2022-12-15\",\r\n                                 \"MissingReferenceDataFlag\":true,\r\n                                 \"SecurtiesSideAmount\":0,\r\n                                 \"SecurtiesSideAmountCurrency\":\"SEK\",\r\n                                 \"CashSideAmount\":0,\r\n                                 \"CashSideAmountCurrency\":\"SEK\",\r\n                                 \"PenaltyDiscountRate\":0.25,\r\n                                 \"FinancialInstrumentAttribute\":{\r\n                                    \"FinancialInstrumentIdentifier\":\"SE0005095767\",\r\n                                    \"Classification\":\"SHRS\",\r\n                                    \"LiquidFlag\":true,\r\n                                    \"SmeGrowthMarketFlag\":false,\r\n                                    \"IlliquidSharesRate\":0.01,\r\n                                    \"LiquidSharesRate\":0.01,\r\n                                    \"CorporateBondsRate\":0.01,\r\n                                    \"SmeGrowthMarketRate \":0.02,\r\n                                    \"GovernmentMunicipalBondsRate\":0.08,\r\n                                    \"SmeGrowthMarketBondsRate\":0.01,\r\n                                    \"OtherInstrumentsRate\":0.01,\r\n                                    \"PlaceOfTrade\":\"ABC\",\r\n                                    \"ExchangeRateFromCurrency\":\"BCE\",\r\n                                    \"ExchangeRateToCurrency\":\"DEF\",\r\n                                    \"ExchangeRate\":500\r\n                                 }\r\n                              }\r\n                           ],\r\n                           \"RelatedTransaction\":{\r\n                              \"AccountOwnerReference\":\"DL22093090007300\",\r\n                              \"AccountServicerReference\":\"s00009741128\",\r\n                              \"TransactionIdentification\":\"2011101753330513\",\r\n                              \"CorporateActionReference\":\"\",\r\n                              \"RelatedInstructionReference\":\"\",\r\n                              \"TransactionDetail\":{\r\n                                 \"ReceiveDeliverIndicator\":\"DELI\",\r\n                                 \"PaymentIndicator\":\"APMT\",\r\n                                 \"SettlementIndicator\":\"TRAD\",\r\n                                 \"TransactionIndicator\":\"SETT\",\r\n                                 \"CorporateActionEventIndicator\":\"ACCU\",\r\n                                 \"AcknowledgedStatusTimestamp\":\"2022-12-15T20:02:25\",\r\n                                 \"CutOffTimestamp\":\"2022-12-15T16:00:00\",\r\n                                 \"MatchedStatusTimestamp\":\"2022-12-15T10:56:29\",\r\n                                 \"SettlementDateTime\":\"2022-12-15\",\r\n                                 \"TradeDateTime\":\"2022-12-15\",\r\n                                 \"SafekeepingAccount\":\"000010470166\",\r\n                                 \"QuantityAmount\":940,\r\n                                 \"PostingAmount\":91,\r\n                                 \"PostingAmountCurrency\":\"SEK\",\r\n                                 \"Statuses\":[\r\n                                    {\r\n                                       \"StatusCode\":\"PENF\",\r\n                                       \"Reasons\":[\r\n                                          {\r\n                                             \"ReasonCode\":\"LACK\"\r\n                                          }\r\n                                       ]\r\n                                    }\r\n                                 ]\r\n                              }\r\n                           }\r\n                        }\r\n                     ]\r\n                  }\r\n               ]\r\n            }\r\n         ]\r\n      }\r\n   ]\r\n}"
+				},
+				"url": "https://penalties-api-custody.sebshift.dev.sebank.se/penalties-import"
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-gateway-internal-admin.dev.sebank.se",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"password": "Sb91905240",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://api-internal.dev.sebank.se/internal/dev/penalties/depositories"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8080",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905255",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"PageNumber\":1,\r\n   \"ContinuationIndicator\":\"MORE\",\r\n   \"SendersMessageReference\":\"MDtest122005\",\r\n   \"FunctionOfMessage\":\"PENA\",\r\n   \"PreparationDate\":\"2022-12-15\",\r\n   \"StatementDateTime\":\"2022-12-15\",\r\n   \"Frequency\":\"DAIL\",\r\n   \"UpdateIndicator\":\"COMP\",\r\n   \"StatementStructure\":\"PENA\",\r\n   \"SafekeepingAccount\":\"AM\",\r\n   \"ActivityFlag\":true,\r\n   \"SendersBic\":\"VPCSSESSXXX\",\r\n   \"Penalties\":[\r\n      {\r\n         \"StatementPeriodFrom\":\"2022-12-01\",\r\n         \"StatementPeriodTo\":\"2022-12-31\",\r\n         \"PenaltyListTypeIndicator\":\"FWIS\",\r\n         \"PenaltyCurrencies\":[\r\n            {\r\n               \"Currency\":\"SEK\",\r\n               \"PenaltyDetectionDateTime\":\"2022-12-15\",\r\n               \"CashPenaltyPaymentReference\":\"\",\r\n               \"CounterpartyAccountServiceProviderDepositary\":\"VPCSSESSXXX\",\r\n               \"PartyCapacityIndicator\":\"CSDP\",\r\n               \"GlobalNetAmountCurrency\":\"SEK\",\r\n               \"GlobalNetAmount\":15150,\r\n               \"SebRelatedPartyInfo\":\"56971012763\",\r\n               \"PenaltyCounterParties\":[\r\n                  {\r\n                     \"CounterpartyAccountServicerInfo\":\"ESSEDKKKXXX\",\r\n                     \"CounterpartyRelatedPartyInfo\":\"VPCSSESSXXX\",\r\n                     \"PartyCapacityIndicator\":\"CSDP\",\r\n                     \"BilateralNetAmount\":460,\r\n                     \"BilateralNetAmountCurrency\":\"SEK\",\r\n                     \"PenaltyDetails\":[\r\n                        {\r\n                           \"PenaltyCommonReference\":\"MD122005\",\r\n                           \"PenaltyReference\":\"MDTEST122005\",\r\n                           \"PenaltyTypeIndicator\":\"SEFP\",\r\n                           \"CalculationMethodIndicator\":\"SECU\",\r\n                           \"AmountAggregationFlag\":true,\r\n                           \"PenaltyStatus\":\"ACTV\",\r\n                           \"ActiveStatusReason\":\"NEWP\",\r\n                           \"ComputedAmount\":2000,\r\n                           \"ComputedAmountCurrency\":\"SEK\",\r\n                           \"NumberOfDays\":1,\r\n                           \"CalculationDetails\":[\r\n                              {\r\n                                 \"PenaltyDate\":\"2022-12-15\",\r\n                                 \"MissingReferenceDataFlag\":true,\r\n                                 \"SecurtiesSideAmount\":0,\r\n                                 \"SecurtiesSideAmountCurrency\":\"SEK\",\r\n                                 \"CashSideAmount\":0,\r\n                                 \"CashSideAmountCurrency\":\"SEK\",\r\n                                 \"PenaltyDiscountRate\":0.25,\r\n                                 \"FinancialInstrumentAttribute\":{\r\n                                    \"FinancialInstrumentIdentifier\":\"SE0005095767\",\r\n                                    \"Classification\":\"SHRS\",\r\n                                    \"LiquidFlag\":true,\r\n                                    \"SmeGrowthMarketFlag\":false,\r\n                                    \"IlliquidSharesRate\":0.01,\r\n                                    \"LiquidSharesRate\":0.01,\r\n                                    \"CorporateBondsRate\":0.01,\r\n                                    \"SmeGrowthMarketRate \":0.02,\r\n                                    \"GovernmentMunicipalBondsRate\":0.08,\r\n                                    \"SmeGrowthMarketBondsRate\":0.01,\r\n                                    \"OtherInstrumentsRate\":0.01,\r\n                                    \"PlaceOfTrade\":\"ABC\",\r\n                                    \"ExchangeRateFromCurrency\":\"BCE\",\r\n                                    \"ExchangeRateToCurrency\":\"DEF\",\r\n                                    \"ExchangeRate\":500\r\n                                 }\r\n                              }\r\n                           ],\r\n                           \"RelatedTransaction\":{\r\n                              \"AccountOwnerReference\":\"DL22093090007300\",\r\n                              \"AccountServicerReference\":\"s00009741128\",\r\n                              \"TransactionIdentification\":\"2011101753330513\",\r\n                              \"CorporateActionReference\":\"\",\r\n                              \"RelatedInstructionReference\":\"\",\r\n                              \"TransactionDetail\":{\r\n                                 \"ReceiveDeliverIndicator\":\"DELI\",\r\n                                 \"PaymentIndicator\":\"APMT\",\r\n                                 \"SettlementIndicator\":\"TRAD\",\r\n                                 \"TransactionIndicator\":\"SETT\",\r\n                                 \"CorporateActionEventIndicator\":\"ACCU\",\r\n                                 \"AcknowledgedStatusTimestamp\":\"2022-12-15T20:02:25\",\r\n                                 \"CutOffTimestamp\":\"2022-12-15T16:00:00\",\r\n                                 \"MatchedStatusTimestamp\":\"2022-12-15T10:56:29\",\r\n                                 \"SettlementDateTime\":\"2022-12-15\",\r\n                                 \"TradeDateTime\":\"2022-12-15\",\r\n                                 \"SafekeepingAccount\":\"000010470166\",\r\n                                 \"QuantityAmount\":940,\r\n                                 \"PostingAmount\":91,\r\n                                 \"PostingAmountCurrency\":\"SEK\",\r\n                                 \"Statuses\":[\r\n                                    {\r\n                                       \"StatusCode\":\"PENF\",\r\n                                       \"Reasons\":[\r\n                                          {\r\n                                             \"ReasonCode\":\"LACK\"\r\n                                          }\r\n                                       ]\r\n                                    }\r\n                                 ]\r\n                              }\r\n                           }\r\n                        }\r\n                     ]\r\n                  }\r\n               ]\r\n            }\r\n         ]\r\n      }\r\n   ]\r\n}"
+				},
+				"url": "http://localhost:8080/penalties-import"
+			},
+			"response": []
+		},
+		{
+			"name": "local_test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905255",
+						"tokenType": "",
+						"accessToken": "",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"username": "s4972b",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "ActingUser",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "ActingTab",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}"
+				},
+				"url": "http://localhost:8080/log"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8080/delete",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905242",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6202BEBA-72E7-4B51-AAFE-2549FE6FB208\",\r\n\t\"name\": \"test\",\r\n\t\"custodyAccounts\": [\r\n\t\t{\r\n            \"id\": \"7EE152C2-072C-4B1C-A1D7-7ADBE2E49B70\",\r\n            \"CustodyAccountGroupId\":\"6202BEBA-72E7-4B51-AAFE-2549FE6FB208\",\r\n\t\t\t\"custodyAccountNumber\": \"01000089940_1\",\r\n\t\t\t\"custodyAccountName\": \"KINNARNEY /IPAP STAFFORD_1\"\r\n\t\t},\r\n        {\r\n            \"CustodyAccountGroupId\":\"6202BEBA-72E7-4B51-AAFE-2549FE6FB208\",\r\n\t\t\t\"custodyAccountNumber\": \"01000091295\",\r\n\t\t\t\"custodyAccountName\": \"DUPUY /IPAP RAFIQ\"\r\n\t\t}\r\n\t],\r\n\t\"emailAddresses\": [\r\n\t\t{\r\n            \"id\":\"FC4D6467-062A-46C8-BB12-1C7866601276\",\r\n            \"CustodyAccountGroupId\":\"6202BEBA-72E7-4B51-AAFE-2549FE6FB208\",\r\n\t\t\t\"address\": \"marius.didjurgis2@seb.se\"\r\n\t\t},\r\n        {\r\n            \"CustodyAccountGroupId\":\"6202BEBA-72E7-4B51-AAFE-2549FE6FB208\",\r\n\t\t\t\"address\": \"marius.didjurgis2222@seb.se\"\r\n\t\t}\r\n\t]\r\n}"
+				},
+				"url": "http://localhost:8080/custody-account-group/F0FCD034-190B-4F6A-8B8C-BBA1C529D995"
+			},
+			"response": []
+		},
+		{
+			"name": "penalties-import",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905258",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]"
+				},
+				"url": "https://api-internal.dev.sebank.se/internal/dev/penalties/penalties-import"
+			},
+			"response": []
+		},
+		{
+			"name": "penalties-import-stg",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905258",
+						"accessTokenUrl": "https://sso.stg.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"PageNumber\":\"3\",\"ContinuationIndicator\":\"LAST\",\"SendersMessageReference\":\"159\",\"FunctionOfMessage\":\"PENA\",\"PreparationDate\":\"2021-08-05\",\"Frequency\":\"DAIL\",\"UpdateIndicator\":\"DELT\",\"StatementStructure\":\"PENA\",\"SafekeepingAccount\":\"01-000514897\",\"ActivityFlag\":\"true\",\"Penalties\":[{\"PenaltyListTypeIndicator\":\"CURR\",\"AccountServiceProviderDepositary\":\"ESSESESSXXX\",\"PenaltyCurrencies\":[{\"Currency\":\"SEK\",\"PenaltyDetectionDateTime\":\"2021-08-04\",\"RelatedParty\":\"ESSESES0XXX\",\"CounterpartyAccountServiceProviderDepositary\":\"VPCSSESSXXX\",\"PartyCapacityIndicator\":\"CSDP\",\"PenaltyCounterparties\":[{\"RelatedParty\":\"SWEDSES0XXX\",\"PartyCapacityIndicator\":\"CSDP\",\"BilateralNetAmount\":0,\"BilateralNetAmountCurrency\":\"SEK\",\"PenaltyDetails\":[{\"PenaltyCommonReference\":\"210804000003036\",\"PenaltyReference\":\"210804000003034\",\"AmountAggregationFlag\":\"true\",\"PenaltyStatus\":\"ACTV\",\"ActiveStatusReason\":\"NEWP\",\"ComputedAmount\":0,\"ComputedAmountCurrency\":\"SEK\",\"NumberOfDays\":\"1\",\"CalculationDetails\":[{\"PenaltyDate\":\"2021-08-04\",\"MissingReferenceDataFlag\":\"true\",\"SecurtiesSideAmount\":0,\"SecurtiesSideAmountCurrency\":\"SEK\",\"FinancialInstrumentAttribute\":{\"FinancialInstrumentIdentifier\":\"SE0000682734\"}}],\"RelatedTransaction\":{\"AccountOwnerReference\":\"GD191114-15\",\"AccountServicerReference\":\"S104848\",\"TransactionDetail\":{\"ReceiveDeliverIndicator\":\"RECE\",\"PaymentIndicator\":\"APMT\",\"SettlementIndicator\":\"TRAD\",\"TransactionIndicator\":\"SETT\",\"AcknowledgedStatusTimestamp\":\"2019-11-14T15:46:25\",\"MatchedStatusTimestamp\":\"2019-11-15T11:10:55\",\"SettlementDateTime\":\"2019-11-15\",\"TradeDateTime\":\"2019-11-14\",\"SafekeepingAccount\":\"01-000514897\",\"QuantityAmount\":15,\"PostingAmount\":15,\"PostingAmountCurrency\":\"SEK\",\"Statuses\":[{\"StatusCode\":\"PENF\",\"Reasons\":[{\"ReasonCode\":\"MONY\"}]}]}}}]}]}]}]}"
+				},
+				"url": "https://api-internal.stg.sebank.se/internal/acc/penalties/penalties-import"
+			},
+			"response": []
+		},
+		{
+			"name": "penalties-api-stg",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"clientId": "8C71A442-1500-42CD-A2D6-90663EB156E8",
+						"accessTokenUrl": "https://sso.stg.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"password": "Sb91905240",
+						"tokenType": "bearer",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://penalties-api-custody.sebshift.stg.sebank.se/depositories"
+			},
+			"response": []
+		},
+		{
+			"name": "csm3-mainframe-logging",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905259",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Server\":\"B8301717\",\r\n\"System\":\"Custody.Penalties.Api\",\r\n\"Service\":\"https://sebcswsm-iis-tst.sebank.se:27543/Saml/Factory/Secsettl/SecsettlList02Gbtr01/Post\",\r\n\"User\":\"s4972b\",\r\n\"Request\":{\"VODB\":{\"VAVWGB1V\":{\"SEB_REFERENCE\":\"DL22093090007300\"},\"VAVWGB13\":null}},\r\n\"StartTime\":\"2022-12-20T22:19:19.7326868+02:00\",\r\n\"StopTime\":\"2022-12-20T22:19:26.1218886+02:00\",\r\n\"Error\":\"OK\",\r\n\"Messages\":null,\r\n\"Rows\":0\r\n}\r\n"
+				},
+				"url": "https://csm3-mainframe-logging-api-custody.sebshift.dev.sebank.se/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "2807Gexx5",
+						"username": "E2807G",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"tokenType": "bearer",
+						"accessToken": "{{tok}}",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "ActingUser",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "ActingTab",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"InstructionId\":638272,\r\n   \"InstructionType\":\"ALLOC\",\r\n   \"ProcessStepId\":20\r\n}"
+				},
+				"url": "http://localhost:8080/ssc/peg-api/restart"
+			},
+			"response": []
+		},
+		{
+			"name": "test local",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/yaml",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "232323",
+						"type": "text"
+					},
+					{
+						"key": "JWT-Assertion",
+						"value": "eyJjdHkiOiJsb2dpbi12MSIsInR5cCI6IkpXVCIsImtpZCI6ImZtc1dvbDZSOHhvSGR2cHhyVTFhZGl6VGhYQ1VjRlZnY3FxLWE1LWtMNHMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIiLCJhbXIiOlsiRElHSVBBU1NfQVBQTDIiXSwic2lkIjoiNDVmNGE5M2YtMDM0Zi00ZTU1LWIyZWYtODg1NjcwNmZiNGY0IiwiYXV0aF90aW1lIjoxNjYyNDQ4OTAzLCJhdXRoX2NoYW5uZWwiOiJ0cHAtYXV0aC1kZWNvdXBsZWQuc3RnLnNlYmFuay5zZSIsImdyb3VwcyI6WyJFQkJBX0lLRl8xNSIsIkVCQkFfSUtQXzA1Il0sIm5hbWUiOiJMRUJST04gSVJJRSAgIC9NSUZJRDIiLCJnaXZlbl9uYW1lIjoiTEVCUk9OIiwibWlkZGxlX25hbWUiOiJMRUJST04iLCJmYW1pbHlfbmFtZSI6IklSSUUgICAvTUlGSUQyIiwiYW1yX2lzc3VlciI6IlNrYW5kaW5hdmlza2EgRW5za2lsZGEgQmFua2VuIEFCIChwdWJsKSIsImFtcl9zZXJpYWxfbnVtYmVyIjoiMDAwMDAwMDAwMTAwMDg2NTAyNiIsImF1ZCI6WyJTRUIiLCI3MTE1NDQzNi1hZTVkLWY0NWUtOWU0Yi00NTNjNTk2ZjY2MzgiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiMTk2MjA5MDQzMjUzIiwiaXNzIjoiaHR0cHM6Ly9pc2FtIiwiZXhwIjoxNjYyNDQ5NTAzLCJqdGkiOiIxYWNTR0dFc1FPMVpNUHU3TmQxdkx6czZxZDAwbHdWd3ZyamxLVWtrIiwiaWF0IjoxNjYyNDQ4OTAzLCJuYmYiOjE2NjI0NDg5MDN9.eJpIdb6LxFSV8d0DZoa1wrYUb8ryuVjYpsTwgwzjl2aH58GwWPnU8dwhSzYd5hpgzw49v-TmxzwSvseKXGj__hngUlp4xbu7vX_LejmMhaAfdAx6fi_vTEgStyY5O6M6NBfQ2sbRTJhB0sWEJZD6pQ6xLh1Et0uoqWhhXhRwCrc0x8P7CTwGrBFrJzlLHdTuzRfYf_4xjcpRiP_aPfrTxsSqI49Ze_SvOnEcD13B8FiZ_9FPp7q65kCOEDjlw6BwE5rmIztBQDSV-ZtvFm5AdQkpMCHbZjlshe1JXIcNZCkrxEcUpxBXOBMTM0NXZaUVvlliZUaxJX-JFTbgafkgLg",
+						"type": "text"
+					},
+					{
+						"key": "x-servicerequestid",
+						"value": "111111",
+						"type": "text"
+					},
+					{
+						"key": "X-Api-Key",
+						"value": "d04e346c-d27e-49e6-8e52-5f1d91fbf4f1",
+						"type": "text"
+					},
+					{
+						"key": "X-Gateway-Rbac",
+						"value": "8082c916-b416-49a6-b5b6-fe7734b85ead",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "openapi: 3.0.1\r\ninfo:\r\n  title: Penalties\r\n  description: Manages penalty (MT537) messages\r\n  contact:\r\n    name: Clearing & Settlement CIF\r\n    email: clearing.settlement.front@seb.se\r\n  license:\r\n    name: SEB\r\n    url: https://sebgroup.com/site-assistance/legal-notice\r\n  version: 1.0.0\r\n  x-seb:\r\n    domain: DOM16\r\n    tribe: TRI88\r\n    art: ART98\r\n    team: TEAM32\r\n  x-seb-api:\r\n    id: c504cd7c-e8d3-4514-8e0d-7c60ee0b9273\r\n  x-seb-portal:\r\n    category: savings\r\n    state: active\r\n    summary: Manages penalty (MT537) messages\r\nservers:\r\n  - url: https://penalties-api-gateway-custody.sebshift.dev.sebank.se\r\n    x-environment: dev\r\n  - url: https://penalties-api-gateway-custody.sebshift.stg.sebank.se\r\n    x-environment: stage\r\n  - url: https://penalties-api-gateway-custody.sebshift.prd.sebank.se\r\n    x-environment: prod\r\npaths:\r\n  /log:\r\n    get:\r\n      tags:\r\n        - Log\r\n      parameters:\r\n        - name: OrderBy\r\n          in: query\r\n          schema:\r\n            $ref: '#/components/schemas/LogOrderBy'\r\n        - name: DateFrom\r\n          in: query\r\n          schema:\r\n            type: string\r\n            format: date-time\r\n        - name: DateTo\r\n          in: query\r\n          schema:\r\n            type: string\r\n            format: date-time\r\n        - name: OrderDesc\r\n          in: query\r\n          schema:\r\n            type: boolean\r\n        - name: Take\r\n          in: query\r\n          schema:\r\n            type: integer\r\n            format: int32\r\n        - name: Skip\r\n          in: query\r\n          schema:\r\n            type: integer\r\n            format: int32\r\n      responses:\r\n        '200':\r\n          description: Success\r\n  /penalties-import:\r\n    post:\r\n      tags:\r\n        - PenaltiesImport\r\n      requestBody:\r\n        content:\r\n          application/json-patch+json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          application/json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          text/json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          application/*+json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n      responses:\r\n        '200':\r\n          description: Success\r\n  '/re-import/{originalPenaltyImportId}/{approvedUserSid}':\r\n    post:\r\n      tags:\r\n        - PenaltiesImport\r\n      parameters:\r\n        - name: originalPenaltyImportId\r\n          in: path\r\n          required: true\r\n          schema:\r\n            type: string\r\n            format: uuid\r\n        - name: approvedUserSid\r\n          in: path\r\n          required: true\r\n          schema:\r\n            type: string\r\n      requestBody:\r\n        content:\r\n          application/json-patch+json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          application/json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          text/json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n          application/*+json:\r\n            schema:\r\n              $ref: '#/components/schemas/GeneralInformation'\r\n      responses:\r\n        '200':\r\n          description: Success\r\n  /re-enrich:\r\n    patch:\r\n      tags:\r\n        - PenaltiesImport\r\n      parameters:\r\n        - name: ids\r\n          in: query\r\n          required: true\r\n          schema:\r\n            type: array\r\n            items:\r\n              type: string\r\n              format: uuid\r\n      responses:\r\n        '200':\r\n          description: Success\r\n          content:\r\n            text/plain:\r\n              schema:\r\n                type: array\r\n                items:\r\n                  type: string\r\n                  format: uuid\r\n            application/json:\r\n              schema:\r\n                type: array\r\n                items:\r\n                  type: string\r\n                  format: uuid\r\n            text/json:\r\n              schema:\r\n                type: array\r\n                items:\r\n                  type: string\r\n                  format: uuid\r\ncomponents:\r\n  schemas:\r\n    ActiveStatusReason:\r\n      enum:\r\n        - NEWP\r\n        - OTHR\r\n        - RALO\r\n        - SWIC\r\n        - UPDT\r\n      type: string\r\n    CalculationDetail:\r\n      required:\r\n        - penaltyDate\r\n      type: object\r\n      properties:\r\n        penaltyDate:\r\n          type: string\r\n          format: date-time\r\n        missingReferenceDataFlag:\r\n          type: boolean\r\n        penaltyDiscountRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        securitiesSideAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        securitiesSideAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        cashSideAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        cashSideAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        financialInstrumentAttribute:\r\n          $ref: '#/components/schemas/FinancialInstrumentAttribute'\r\n      additionalProperties: false\r\n    CalculationMethodIndicator:\r\n      enum:\r\n        - SECU\r\n        - MIXE\r\n        - CASH\r\n        - BOTH\r\n      type: string\r\n    Classification:\r\n      enum:\r\n        - SHRS\r\n        - SOVR\r\n        - DEBT\r\n        - SECU\r\n        - EFTS\r\n        - UCIT\r\n        - MMKT\r\n        - EMAL\r\n        - OTHR\r\n        - ETFS\r\n      type: string\r\n    ContinuationIndicator:\r\n      enum:\r\n        - LAST\r\n        - MORE\r\n        - ONLY\r\n      type: string\r\n    CorporateActionEventIndicator:\r\n      enum:\r\n        - ACCU\r\n        - ACTV\r\n        - ATTI\r\n        - BIDS\r\n        - BMET\r\n        - BONU\r\n        - BPUT\r\n        - BRUP\r\n        - CAPD\r\n        - CAPG\r\n        - CAPI\r\n        - CERT\r\n        - CHAN\r\n        - CLSA\r\n        - CMET\r\n        - CONS\r\n        - CONV\r\n        - COOP\r\n        - CREV\r\n        - DECR\r\n        - DETI\r\n        - DFLT\r\n        - DLST\r\n        - DRAW\r\n        - DRCA\r\n        - DRIP\r\n        - DSCL\r\n        - DTCH\r\n        - DVCA\r\n        - DVOP\r\n        - DVSC\r\n        - DVSE\r\n        - EXOF\r\n        - EXRI\r\n        - EXTM\r\n        - EXWA\r\n        - INCR\r\n        - INFO\r\n        - INTR\r\n        - LIQU\r\n        - MCAL\r\n        - MEET\r\n        - MRGR\r\n        - NOOF\r\n        - ODLT\r\n        - OMET\r\n        - OTHR\r\n        - PARI\r\n        - PCAL\r\n        - PDEF\r\n        - PINK\r\n        - PLAC\r\n        - PPMT\r\n        - PRED\r\n        - PRIO\r\n        - REDM\r\n        - REDO\r\n        - REMK\r\n        - RHDI\r\n        - RHTS\r\n        - SHPR\r\n        - SMAL\r\n        - SOFF\r\n        - SPLF\r\n        - SPLR\r\n        - SUSP\r\n        - TEND\r\n        - TNDP\r\n        - TREC\r\n        - WRTH\r\n        - WTRC\r\n        - XMET\r\n      type: string\r\n    FinancialInstrumentAttribute:\r\n      required:\r\n        - financialInstrumentIdentifier\r\n      type: object\r\n      properties:\r\n        financialInstrumentIdentifier:\r\n          minLength: 1\r\n          type: string\r\n        classification:\r\n          $ref: '#/components/schemas/Classification'\r\n        liquidFlag:\r\n          type: boolean\r\n          nullable: true\r\n        smeGrowthMarketFlag:\r\n          type: boolean\r\n          nullable: true\r\n        illiquidSharesRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        liquidSharesRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        corporateBondsRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        smeGrowthMarketRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        governmentMunicipalBondsRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        smeGrowthMarketBondsRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        otherInstrumentsRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        placeOfTrade:\r\n          type: string\r\n          nullable: true\r\n        exchangeRateFromCurrency:\r\n          type: string\r\n          nullable: true\r\n        exchangeRateToCurrency:\r\n          type: string\r\n          nullable: true\r\n        exchangeRate:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n      additionalProperties: false\r\n    Frequency:\r\n      enum:\r\n        - DAIL\r\n        - MNTH\r\n      type: string\r\n    GeneralInformation:\r\n      required:\r\n        - activityFlag\r\n        - continuationIndicator\r\n        - functionOfMessage\r\n        - pageNumber\r\n        - safekeepingAccount\r\n        - sendersMessageReference\r\n        - statementDateTime\r\n        - statementStructure\r\n      type: object\r\n      properties:\r\n        pageNumber:\r\n          type: integer\r\n          format: int32\r\n        continuationIndicator:\r\n          $ref: '#/components/schemas/ContinuationIndicator'\r\n        sendersMessageReference:\r\n          minLength: 1\r\n          type: string\r\n        functionOfMessage:\r\n          minLength: 1\r\n          type: string\r\n        preparationDate:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        statementDateTime:\r\n          type: string\r\n          format: date-time\r\n        frequency:\r\n          $ref: '#/components/schemas/Frequency'\r\n        updateIndicator:\r\n          $ref: '#/components/schemas/UpdateIndicator'\r\n        statementStructure:\r\n          $ref: '#/components/schemas/StatementStructure'\r\n        safekeepingAccount:\r\n          minLength: 1\r\n          type: string\r\n        activityFlag:\r\n          type: boolean\r\n        sendersBic:\r\n          type: string\r\n          nullable: true\r\n        penalties:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/Penalty'\r\n          nullable: true\r\n      additionalProperties: false\r\n    LogOrderBy:\r\n      enum:\r\n        - Created\r\n        - ErrorMessage\r\n      type: string\r\n    PartyCapacityIndicator:\r\n      enum:\r\n        - CSDP\r\n        - CCPA\r\n        - EXTE\r\n        - ICSD\r\n        - NAPI\r\n        - NCSD\r\n      type: string\r\n    PaymentIndicator:\r\n      enum:\r\n        - APMT\r\n        - FREE\r\n      type: string\r\n    Penalty:\r\n      required:\r\n        - penaltyListTypeIndicator\r\n      type: object\r\n      properties:\r\n        statementPeriodFrom:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        statementPeriodTo:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        penaltyListTypeIndicator:\r\n          $ref: '#/components/schemas/PenaltyListTypeIndicator'\r\n        accountServiceProviderDepositary:\r\n          type: string\r\n          nullable: true\r\n        penaltyCurrencies:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/PenaltyCurrency'\r\n          nullable: true\r\n      additionalProperties: false\r\n    PenaltyCounterparty:\r\n      type: object\r\n      properties:\r\n        counterpartyAccountServicerInfo:\r\n          type: string\r\n          nullable: true\r\n        counterpartyRelatedPartyInfo:\r\n          type: string\r\n          nullable: true\r\n        partyCapacityIndicator:\r\n          $ref: '#/components/schemas/PartyCapacityIndicator'\r\n        bilateralNetAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        bilateralNetAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        penaltyDetails:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/PenaltyDetail'\r\n          nullable: true\r\n      additionalProperties: false\r\n    PenaltyCurrency:\r\n      required:\r\n        - partyCapacityIndicator\r\n        - sebRelatedPartyInfo\r\n      type: object\r\n      properties:\r\n        currency:\r\n          type: string\r\n          nullable: true\r\n        penaltyDetectionDateTime:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        cashPenaltyPaymentReference:\r\n          type: string\r\n          nullable: true\r\n        sebRelatedPartyInfo:\r\n          minLength: 1\r\n          type: string\r\n        counterpartyAccountServiceProviderDepositary:\r\n          type: string\r\n          nullable: true\r\n        partyCapacityIndicator:\r\n          $ref: '#/components/schemas/PartyCapacityIndicator'\r\n        globalNetAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        globalNetAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        paymentDate:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        cashAccount:\r\n          type: string\r\n          nullable: true\r\n        aggregatedDebitAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        aggregatedDebitAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        aggregatedCreditAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        aggregatedCreditAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        penaltyCounterparties:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/PenaltyCounterparty'\r\n          nullable: true\r\n      additionalProperties: false\r\n    PenaltyDetail:\r\n      required:\r\n        - calculationMethodIndicator\r\n        - computedAmount\r\n        - computedAmountCurrency\r\n        - numberOfDays\r\n        - penaltyTypeIndicator\r\n      type: object\r\n      properties:\r\n        penaltyCommonReference:\r\n          type: string\r\n          nullable: true\r\n        penaltyReference:\r\n          type: string\r\n          nullable: true\r\n        penaltyTypeIndicator:\r\n          $ref: '#/components/schemas/PenaltyTypeIndicator'\r\n        calculationMethodIndicator:\r\n          $ref: '#/components/schemas/CalculationMethodIndicator'\r\n        amountAggregationFlag:\r\n          type: boolean\r\n          nullable: true\r\n        penaltyStatus:\r\n          $ref: '#/components/schemas/PenaltyStatus'\r\n        activeStatusReason:\r\n          $ref: '#/components/schemas/ActiveStatusReason'\r\n        removeStatusReason:\r\n          $ref: '#/components/schemas/RemoveStatusReason'\r\n        computedAmount:\r\n          type: number\r\n          format: double\r\n        computedAmountCurrency:\r\n          minLength: 1\r\n          type: string\r\n        numberOfDays:\r\n          type: integer\r\n          format: int32\r\n        calculationDetails:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/CalculationDetail'\r\n          nullable: true\r\n        relatedTransaction:\r\n          $ref: '#/components/schemas/RelatedTransaction'\r\n      additionalProperties: false\r\n    PenaltyListTypeIndicator:\r\n      enum:\r\n        - FWIS\r\n        - FWAM\r\n        - CURR\r\n      type: string\r\n    PenaltyStatus:\r\n      enum:\r\n        - ACTV\r\n        - REMO\r\n        - NCOM\r\n      type: string\r\n    PenaltyTypeIndicator:\r\n      enum:\r\n        - SEFP\r\n        - LMFP\r\n      type: string\r\n    Reason:\r\n      required:\r\n        - reasonCode\r\n      type: object\r\n      properties:\r\n        reasonCode:\r\n          $ref: '#/components/schemas/ReasonCode'\r\n      additionalProperties: false\r\n    ReasonCode:\r\n      enum:\r\n        - BENO\r\n        - BLOC\r\n        - BOTH\r\n        - BYIY\r\n        - CAIS\r\n        - CANR\r\n        - CDLR\r\n        - CERT\r\n        - CHAS\r\n        - CLAC\r\n        - CLAT\r\n        - CLHT\r\n        - CMON\r\n        - COLL\r\n        - CPEC\r\n        - CSDH\r\n        - CVAL\r\n        - CYCL\r\n        - DENO\r\n        - DEPO\r\n        - DISA\r\n        - DKNY\r\n        - DOCC\r\n        - DOCY\r\n        - FLIM\r\n        - FROZ\r\n        - GLOB\r\n        - IAAD\r\n        - INBC\r\n        - INCA\r\n        - LAAW\r\n        - LACK\r\n        - LALO\r\n        - LATE\r\n        - LINK\r\n        - LIQU\r\n        - MINO\r\n        - MLAT\r\n        - MONY\r\n        - MUNO\r\n        - NARR\r\n        - NCON\r\n        - NEWI\r\n        - NOFX\r\n        - OBJT\r\n        - PART\r\n        - PHCK\r\n        - PHSE\r\n        - PRCY\r\n        - PREA\r\n        - PRSY\r\n        - REFS\r\n        - REGT\r\n        - SBLO\r\n        - SDUT\r\n        - SETS\r\n        - STCD\r\n        - YCOL\r\n      type: string\r\n    ReceiveDeliverIndicator:\r\n      enum:\r\n        - RECE\r\n        - DELI\r\n      type: string\r\n    RelatedTransaction:\r\n      required:\r\n        - accountOwnerReference\r\n      type: object\r\n      properties:\r\n        accountOwnerReference:\r\n          minLength: 1\r\n          type: string\r\n        accountServicerReference:\r\n          type: string\r\n          nullable: true\r\n        transactionIdentification:\r\n          type: string\r\n          nullable: true\r\n        corporateActionReference:\r\n          type: string\r\n          nullable: true\r\n        relatedInstructionReference:\r\n          type: string\r\n          nullable: true\r\n        transactionDetail:\r\n          $ref: '#/components/schemas/TransactionDetail'\r\n      additionalProperties: false\r\n    RemoveStatusReason:\r\n      enum:\r\n        - CORP\r\n        - INSO\r\n        - OTHR\r\n        - RALO\r\n        - SEMP\r\n        - SESU\r\n        - SUSP\r\n        - SWIC\r\n        - TEIM\r\n      type: string\r\n    StatementStructure:\r\n      enum:\r\n        - PENA\r\n      type: string\r\n    Status:\r\n      required:\r\n        - statusCode\r\n      type: object\r\n      properties:\r\n        statusCode:\r\n          $ref: '#/components/schemas/StatusCode'\r\n        reasons:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/Reason'\r\n          nullable: true\r\n      additionalProperties: false\r\n    StatusCode:\r\n      enum:\r\n        - PENF\r\n        - PEND\r\n      type: string\r\n    TransactionDetail:\r\n      required:\r\n        - paymentIndicator\r\n        - quantityAmount\r\n        - receiveDeliverIndicator\r\n        - settlementDateTime\r\n        - transactionIndicator\r\n      type: object\r\n      properties:\r\n        receiveDeliverIndicator:\r\n          $ref: '#/components/schemas/ReceiveDeliverIndicator'\r\n        paymentIndicator:\r\n          $ref: '#/components/schemas/PaymentIndicator'\r\n        settlementIndicator:\r\n          type: string\r\n          nullable: true\r\n        transactionIndicator:\r\n          $ref: '#/components/schemas/TransactionIndicator'\r\n        corporateActionEventIndicator:\r\n          $ref: '#/components/schemas/CorporateActionEventIndicator'\r\n        acknowledgedStatusTimestamp:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        cutOffTimestamp:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        matchedStatusTimestamp:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        settlementDateTime:\r\n          type: string\r\n          format: date-time\r\n        tradeDateTime:\r\n          type: string\r\n          format: date-time\r\n          nullable: true\r\n        safekeepingAccount:\r\n          type: string\r\n          nullable: true\r\n        quantityAmount:\r\n          type: number\r\n          format: double\r\n        postingAmount:\r\n          type: number\r\n          format: double\r\n          nullable: true\r\n        postingAmountCurrency:\r\n          type: string\r\n          nullable: true\r\n        accountOwner:\r\n          type: string\r\n          nullable: true\r\n        statuses:\r\n          type: array\r\n          items:\r\n            $ref: '#/components/schemas/Status'\r\n          nullable: true\r\n      additionalProperties: false\r\n    TransactionIndicator:\r\n      enum:\r\n        - SETT\r\n        - CORP\r\n      type: string\r\n    UpdateIndicator:\r\n      enum:\r\n        - COMP\r\n        - DELT\r\n      type: string"
+				},
+				"url": "https://api.prd.sebank.se/internal/apigateway/deployment/v0/deployment/prd"
+			},
+			"response": []
+		},
+		{
+			"name": "test local2",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905261",
+						"username": "s4972b",
+						"headerPrefix": "Bearer",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"tokenType": "bearer",
+						"accessToken": "{{tok}}",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "ActingUser",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "ActingTab",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "If-None-Match",
+						"value": "232323",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/ssc/peg-api"
+			},
+			"response": []
+		}
+	]
+}

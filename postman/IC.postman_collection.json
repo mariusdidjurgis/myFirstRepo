@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "8f8317d1-83de-4133-af64-372cf93a00ba",
+		"name": "IC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9782066"
+	},
+	"item": [
+		{
+			"name": "search-repairable",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905240",
+						"username": "s4972b",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"challengeAlgorithm": "S256",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"addTokenTo": "header",
+						"client_authentication": "body",
+						"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJVTmdDcGs5QzNSMk95OGVPTUZlazFsUUtNUG1qNnhBQ25HbVctbFdPc2JBIn0.eyJqdGkiOiIzZWU0ZGU3Yy0yZjE5LTRmNjAtYjg1MS0xZWQyMWI0YjJkODciLCJleHAiOjE1ODc1ODg4OTEsIm5iZiI6MCwiaWF0IjoxNTg3NTg4NTkxLCJpc3MiOiJTRUIiLCJhdWQiOlsiU0VCIiwiaW5zdHJ1Y3Rpb24tY2FwdHVyZS1kZXYiXSwic3ViIjoiNTljNGJkM2UtZmU5OC00ZTA1LTllMmMtNGJiYjExOGYyNjQwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiaW5zdHJ1Y3Rpb24tY2FwdHVyZS1kZXYiLCJhdXRoX3RpbWUiOjE1ODc1ODY4NzcsInNlc3Npb25fc3RhdGUiOiJmZTczM2NiOS0xOGNkLTQ5MTYtODdkMi1kMWMxNjY1ZmJiMmEiLCJhY3IiOiIwIiwic2NvcGUiOiJvcGVuaWQgc2ViLWNsaWVudCIsIm9yaWdpbl91cmkiOiJodHRwczovL3Nzby1hdXRoLmN1bXVsdXMuc2ViYW5rLnNlL2F1dGgvcmVhbG1zL21hc3RlciIsImdyb3VwcyI6WyJSRy1DU00tVEZBLUFETSIsIkZHLURFRkFVTFQtUFJPRC1VU0VSUyIsIlNHLUlOUy1tcy1vbmVkcml2ZS1lbiIsIkxHLUF6dXJlLU9mZmljZTM2NS1PbmVEcml2ZSIsIllHLVNJLVVQREFURSIsIlJHLUlOU1RSVUNUSU9OQ0FQVFVSRS1BRE0iLCJPRy1HSUEtVEVDSE5JQ0lBTiIsIlVHLUF6dXJlLUFEU3luYyIsIlVHLUludHVuZS1PbmVEcml2ZSIsIllHLVNlY3VyaXRpZXMtTWFpbnQiLCJUUy1WQ1MtU0JDLVBSRCIsIlBHVS0zNzQwMCIsIlVHLUZWVCIsIlRTLVNCQy1VU1ItUFJEIiwiQUctV0FETS1CODMwMTcxNyIsIlJBLVByb2QtVXNlci1FbXBsb3llZS1WUE4iLCJSRy1DT05GTFVFTkNFLUdFTkVSQUwtVVNSIiwiWUctU0ktVVBEQVRFLVRTVCIsIlVHLURSQS1JUy1TVEstTE9LQUwiLCJZRy1TSS1WSUVXIiwiWUctV0NEVFItVVNFUlMiLCJVRy1TRUJVU0VSIiwiU0ctSU5TLW1pY3JvZm9jdXMtZXh0cmEtZW4iLCJZRy1JQy1TV08iLCJTRy1JTlMtbXMtc2t5cGVmb3JidXNpbmVzcy1lbi1waWxvdCIsIlJBLVByb2QtVXNlci1FbXBsb3llZSIsIkRHMS01OTI2MiIsIkZHLUFQUC1QUk9ELU1TLU9mZmljZTM2NS1PbmVkcml2ZSIsIkZHLUNPTk5FQ1RPUi1QUk9ELURFRkFVTFQtQVoiLCJ5Zy10aHBlLXRlc3QiLCJQRzgtQ0lGX0FQSS1Db250cmlidXRvcnMiLCJTRy1JTlMtYXR0YWNobWF0ZS1leHRyYS1lbiIsIllHLVNJLVZJRVctVFNUIiwiUUctUHJpbnRSZWxlYXNlXzI4X1BTX0JhY2t1cCIsIllHLVNsYWNrIiwiUUctUHJpbnRSZWxlYXNlXzI4X1BTIiwiUEc4LUlTRFNFQ0RPQy1TUC1Db250cmlicyIsIlJHLUpJUkEtR0VORVJBTC1VU1IiLCJZRy1DSUYtQ09ORkxVRU5DRSIsIllHLUlDLUFPIiwiWUctRFNELUdlbmVyYWxBY2Nlc3MiLCJKRzItVmlzdWFsU3R1ZGlvRW50ZXJwcmlzZSIsIlJHLVNlY3VyaXRpZXMtTWFpbnQiLCJRRy1QcmludFJlbGVhc2VfMjhfQmFja3VwIiwiWUctSUMtQU8tVFNUIiwiUEcxLTM3NDAwIiwiWUctSUMtU1dPLVRTVCIsIlNHLUlOUy1hdGxhc3NpYW4tYXRsYXNzaWFuY29tcGFuaW9uLWVuIiwiU0ctSU5TLWFncmVzc28tc2ViLW1sLW53c2hvcnRjdXQiLCJTRy1JTlMtbmV0Y2xlYW4tcHJvYWN0aXZlLWVuIl0sInByZWZlcnJlZF91c2VybmFtZSI6InM0OTcyYiJ9.czg2zthatlDI4onXP0b-39s-gvSXeA_R3zb_XOwUnAmXaqK5uZ_RiGkWeRXUR_n5Gq6MSgCoN1--aHj5K_xHg08Q60Czhqn2lF7-oWjRIwo4z0ZzsWiXYjA_IzIkafYguzq9ZH-Ze2sQDpWPreBEvFKXkNV_HTEhVHgn0UyP07xj-E8S78lKckR_qu6TxJeSDn2Ff4-SiUWqqr2sDfKMpIp8J5s4jQvP05YqUap3rG9FFMW-e4Lme46drozWJLCx8YuaNRw9NO7CT8MkvU8kQ46Q_op3vL5fg9CW14tA31nzbnVDWvCO9O8tFDkeMlbgJuMLF4vL6vzxvtEcx1RMJg",
+						"tokenType": "bearer"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://instructioncapture-tst.sebank.se/compisapi/securities/custody/v1/settlement-instructions/search-repairable?&Skip=0&Take=50&SortCriteria=SettlementDate",
+					"protocol": "http",
+					"host": [
+						"instructioncapture-tst",
+						"sebank",
+						"se"
+					],
+					"path": [
+						"compisapi",
+						"securities",
+						"custody",
+						"v1",
+						"settlement-instructions",
+						"search-repairable"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "Skip",
+							"value": "0"
+						},
+						{
+							"key": "Take",
+							"value": "50"
+						},
+						{
+							"key": "SortCriteria",
+							"value": "SettlementDate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905240",
+						"tokenType": "bearer",
+						"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJyRTRBMWxWUkM0TkQyOXp1QnQ2RS1HaGl4Xy1zOWFpUG5TbVJZZDBuNEVzIn0.eyJleHAiOjE2MjY2OTA5NjksImlhdCI6MTYyNjY5MDY2OSwianRpIjoiNTY2ODliZmQtYWUzMi00ZjcxLWJmNDctOWZkODMyOTI4MmEyIiwiaXNzIjoiaHR0cHM6Ly9zc28uZGV2LnNlYmFuay5zZS9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOlsiU0VCIiwiODQ1MUI4NTYtREM5NC00QkI3LTkyNkMtNDJGMEZDQkU3RjJFIl0sInN1YiI6ImY6YjMyNTcyZjQtMGU0ZS00NGVkLTkwZjItZDlkOTI5NWM4ZTg4OlM0OTcyQiIsInR5cCI6IkJlYXJlciIsImF6cCI6Ijg0NTFCODU2LURDOTQtNEJCNy05MjZDLTQyRjBGQ0JFN0YyRSIsInNlc3Npb25fc3RhdGUiOiJmNjZiMzU3MC1hNTZlLTQ4YjktYWEyMS1kMWMyMjcwMjQ4MzciLCJhY3IiOiIxIiwic2NvcGUiOiJvcGVuaWQgZ3JvdXBzIiwibmJmIjoxNjI2NjkwNjY5LCJncm91cHMiOlsiUkEtUHJvZC1Vc2VyLUVtcGxveWVlIiwiWUctV0NEVFItVVNFUlMiLCJZRy1JQy1TV08iLCJZRy1TSS1VUERBVEUiLCJRRy1QcmludFJlbGVhc2VfMjhfUFMiLCJSRy1KSVJBLUdFTkVSQUwtVVNSIiwiWUctRFNELUdlbmVyYWxBY2Nlc3MiLCJZRy1WUEMtQUNDVC1JTkZPLVRTVCIsIlNHLUlOUy1taWNyb3NvZnQtc3lzbW9uLTEwLWVuIiwiVUctRFJBLUlTLVNUSy1MT0tBTCIsIllHLUZFTklYMi1VU0VSUy1UU1QiLCJQR1UtMzc0MDAiLCJGRy1ERUZBVUxULVBST0QtVVNFUlMiLCJVRy1GVlQiLCJTRy1JTlMtc2ViLWNzdG9vbHMyMDEyLWVuIiwiWUctSUMtQU8iLCJZRy1WUEMtQUNDVC1JTkZPIiwiTEctQXp1cmUtT2ZmaWNlIDM2NS1BSVAtRElWSVNJT05fVGVjaG5vbG9neSIsIlFHLVByaW50UmVsZWFzZV8yOF9CYWNrdXAiLCJMRy1BenVyZS1PZmZpY2UzNjUtT25lRHJpdmUiLCJBRy1XQURNLUI4MzAxNzE3IiwiVUctSW50dW5lLU9uZURyaXZlIiwiVFMtVkNTLVNCQy1QUkQiLCJZRy1DU00tUGVuYWx0aWVzIiwiUEcxLTM3NDAwIiwiUEc4LUlTRFNFQ0RPQy1TUC1Db250cmlicyIsIkRHMS01OTI2MiIsIlVHLVNFQlVTRVIiLCJPRy1HSUEtVEVDSE5JQ0lBTiIsIlNHLUlOUy1hdGxhc3NpYW4tYXRsYXNzaWFuY29tcGFuaW9uLWVuIiwiRkctQ09OTkVDVE9SLVBST0QtREVGQVVMVC1BWiIsIlVHLUF6dXJlLUFEU3luYyIsIllHLUxJUVVJRElUWS1NR01ULVRTVCIsIkpHMi1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiTEctQXp1cmUtT2ZmaWNlMzY1LU1TVGVhbXMiLCJTRy1JTlMtcm9ja2V0c29mdHdhcmUtYmx1ZXpvbmUtZW4iLCJMRy1BWlVSRS1BenVyZURldk9wcy1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiUUctUHJpbnRSZWxlYXNlXzI4X1BTX0JhY2t1cCIsIkZHLUFQUC1QUk9ELU1TLU9mZmljZTM2NS1PbmVkcml2ZSIsIlBHOC1DSUZfQVBJLUNvbnRyaWJ1dG9ycyIsIlJHLUlOU1RSVUNUSU9OQ0FQVFVSRS1BRE0iLCJZRy1DU00tUGVuYWx0aWVzLVRTVCIsIlNHLUlOUy1uZXRjbGVhbi1wcm9hY3RpdmUtZW4iLCJZRy1JQy1BTy1UU1QiLCJZRy1JQy1TV08tVFNUIiwiUkctOTk4NDctUGVudGllcy1BRE0iLCJVRy1WSVAtQURTeW5jIiwiUkctQ09ORkxVRU5DRS1HRU5FUkFMLVVTUiIsIllHLVNlY3VyaXRpZXMtTWFpbnQiLCJZRy1TbGFjayIsIllHLVNJLVZJRVctVFNUIiwiWUctU0ktVVBEQVRFLVRTVCIsIlNHLUlOUy1tcy1za3lwZWZvcmJ1c2luZXNzLWVuLXBpbG90IiwiUkctQ1NNLVRGQS1BRE0iLCJZRy1DSUYtQ09ORkxVRU5DRSIsIlVHLU9tbmlidXMtU3VwcG9ydEdyb3VwQ29uc29sZSIsIlJBLVByb2QtVXNlci1FbXBsb3llZS1WUE4iLCJZRy1TSS1WSUVXIiwiWUctSW50ZWdyYXRpb25Qb3J0YWwtQ2xlYXJpbmdhbmRTZXR0bGVtZW50IiwiU0ctSU5TLWFncmVzc28tc2ViLW1sLW53c2hvcnRjdXQiLCJTRy1JTlMtc3BsdW5rLXVuaXZlcnNhbGZvcndhcmRlci1lbiIsIlJHLVNlY3VyaXRpZXMtTWFpbnQiLCJTRy1JTlMtbXMtb25lZHJpdmUtZW4iLCJ5Zy10aHBlLXRlc3QiLCJZRy1MSVFVSURJVFktTUdNVCJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzNDk3MmIiLCJzaWQiOiJmNjZiMzU3MC1hNTZlLTQ4YjktYWEyMS1kMWMyMjcwMjQ4MzcifQ.FDHTsBmnMCv4DGh6NS-vzlwz5PwCSeFkNl67Nk2hAB2sI3USvFDNhhR8CyZBEAhCkrrYhK48EeK2bVeYpyewbwio2TUR0KuWi5BVJxCgG8kSAcHXa5d-nt8Rvmc80RazkTBpS_90BSzAkn9kXozxaREp9Fl9V_IDFa5DqQlThEz8BKDcpvkS4GnYBGx0V23RMQOwT1XWgtXyPW--ujqPp8CG30Dgh46vITV9C44Z7o3RfRokcM2jS8-gDcI4_sigz9XzVScgthmW9ICIW776q4Nl8TW4nbV1scO2jb30eIQ532w7gJrTO6GQy8BpcFoH-f18BJAAh8zbGG3DpYHa4g",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "ActingUser",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "ActingTab",
+						"value": "Swo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://instructioncapture-tst.sebank.se/compisapi/securities/custody/v1/instruction-search/ClientReference?SearchFlow=ClientReference&ClientReference=F%2B2002270704VWIA",
+					"protocol": "http",
+					"host": [
+						"instructioncapture-tst",
+						"sebank",
+						"se"
+					],
+					"path": [
+						"compisapi",
+						"securities",
+						"custody",
+						"v1",
+						"instruction-search",
+						"ClientReference"
+					],
+					"query": [
+						{
+							"key": "SearchFlow",
+							"value": "ClientReference"
+						},
+						{
+							"key": "ClientReference",
+							"value": "F%2B2002270704VWIA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localGet",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905256",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "ActingUser",
+						"value": "Swo",
+						"type": "text"
+					},
+					{
+						"key": "ActingTab",
+						"value": "Swo",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost/compisapi/securities/custody/v1/transfer-orders/45806935-2893-ed11-a9a5-005056a16334/transfer-instructions"
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905262",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"grant_type": "password_credentials",
+						"clientSecret": "",
+						"tokenType": "bearer",
+						"username": "s4972b",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"client_authentication": "body",
+						"addTokenTo": "header"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"SenderMessageBIC\":\"ESSESESSCAL\",\"ReceiverMessageBIC\":\"ESSESESMAXXX\",\"FunctionOfMessage\":\"NEWM\",\"TransactionIdentification\":\"CALSTO62932816\",\"SecuritiesMovementISO\":\"RECE\",\"CashMovementISO\":\"FREE\",\"CreationDateTime\":null,\"Linkages\":[],\"PlaceOfTradeISO\":null,\"PlaceOfTradeValue\":null,\"PlaceOfClearingBIC\":null,\"TradeDate\":\"2023-07-10T00:00:00\",\"SettlementDate\":\"2023-07-10T00:00:00\",\"DealPrice\":{\"PriceAmountTypeISO\":null,\"CurrencyCode\":null,\"Amount\":null,\"PriceRateTypeISO\":null,\"Rate\":null},\"NumberOfDaysAccrued\":null,\"TradeTransactionConditions\":[],\"CurrencyToBuy\":null,\"CurrencyToSell\":null,\"MatchingStatusISO\":null,\"AffirmationStatusISO\":null,\"FXAdditionalDetails\":null,\"ProcessingAdditionalDetails\":\"PLEASE AMEND FIELD 95::BUYR/SELLTO DTCYID/1970, ADD FIELD97A::SAFE//G23019 EURO94386, AMEND95::REAG/DEAG TO USFW/021000021\",\"ISIN\":\"US91282CBA80\",\"SecurityDescription\":\"BONDUS TREASURYN/B/0D/2023/12/15/0,125PCT\",\"PlaceOfListingISO\":null,\"PlaceOfListingValue\":null,\"ClassFinancialInstrument\":null,\"DenominationCurrency\":null,\"FaceAmount\":3000000.0,\"Unit\":null,\"AmortisedValue\":null,\"AccountOwnerBIC\":null,\"AlternativeID\":null,\"SafekeepingAccount\":\"01002417937\",\"CashAccount\":null,\"SafekeepingPlaceTypeISO\":null,\"SafekeepingPlaceBIC\":null,\"SettlementParameters\":[{\"IndicatorCodeISO\":\"SETR\",\"DataSourceScheme\":null,\"Value\":\"TRAD\"}],\"Parties\":[{\"SettlementPartyISO\":\"PSET\",\"PartyValueBIC\":\"FRNYUS33\",\"PartyValueDSName\":null,\"PartyValueDSS\":null,\"PartyValueName\":null,\"Account\":null,\"AdditionalInformation\":null,\"PartyAlternateId\":null},{\"SettlementPartyISO\":\"DEAG\",\"PartyValueBIC\":\"MGTCBEBE\",\"PartyValueDSName\":null,\"PartyValueDSS\":null,\"PartyValueName\":null,\"Account\":null,\"AdditionalInformation\":null,\"PartyAlternateId\":null},{\"SettlementPartyISO\":\"SELL\",\"PartyValueBIC\":\"ESSESESS\",\"PartyValueDSName\":null,\"PartyValueDSS\":null,\"PartyValueName\":null,\"Account\":null,\"AdditionalInformation\":null,\"PartyAlternateId\":null}],\"Amounts\":[]}"
+				},
+				"url": "http://localhost/compisapi/securities/custody/settlement/v1/instructions"
+			},
+			"response": []
+		},
+		{
+			"name": "instruction",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Qnsib030",
+						"username": "E5288C",
+						"tokenType": "bearer",
+						"accessToken": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJyRTRBMWxWUkM0TkQyOXp1QnQ2RS1HaGl4Xy1zOWFpUG5TbVJZZDBuNEVzIn0.eyJleHAiOjE2MjY2OTE1ODYsImlhdCI6MTYyNjY5MTI4NiwianRpIjoiNjMyOTY2YzktOTBhMS00NDA2LTk1MjYtMjAyZDczZTI0ZDA4IiwiaXNzIjoiaHR0cHM6Ly9zc28uZGV2LnNlYmFuay5zZS9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOlsiU0VCIiwiODQ1MUI4NTYtREM5NC00QkI3LTkyNkMtNDJGMEZDQkU3RjJFIl0sInN1YiI6ImY6YjMyNTcyZjQtMGU0ZS00NGVkLTkwZjItZDlkOTI5NWM4ZTg4OlM0OTcyQiIsInR5cCI6IkJlYXJlciIsImF6cCI6Ijg0NTFCODU2LURDOTQtNEJCNy05MjZDLTQyRjBGQ0JFN0YyRSIsInNlc3Npb25fc3RhdGUiOiJhMTcyYzc5MC04MTcyLTQ5OWUtYmVhOS1hYWU5ZTZjMTkzM2IiLCJhY3IiOiIxIiwic2NvcGUiOiJvcGVuaWQgZ3JvdXBzIiwibmJmIjoxNjI2NjkxMjg2LCJncm91cHMiOlsiUkEtUHJvZC1Vc2VyLUVtcGxveWVlIiwiWUctV0NEVFItVVNFUlMiLCJZRy1JQy1TV08iLCJZRy1TSS1VUERBVEUiLCJRRy1QcmludFJlbGVhc2VfMjhfUFMiLCJSRy1KSVJBLUdFTkVSQUwtVVNSIiwiWUctRFNELUdlbmVyYWxBY2Nlc3MiLCJZRy1WUEMtQUNDVC1JTkZPLVRTVCIsIlNHLUlOUy1taWNyb3NvZnQtc3lzbW9uLTEwLWVuIiwiVUctRFJBLUlTLVNUSy1MT0tBTCIsIllHLUZFTklYMi1VU0VSUy1UU1QiLCJQR1UtMzc0MDAiLCJGRy1ERUZBVUxULVBST0QtVVNFUlMiLCJVRy1GVlQiLCJTRy1JTlMtc2ViLWNzdG9vbHMyMDEyLWVuIiwiWUctSUMtQU8iLCJZRy1WUEMtQUNDVC1JTkZPIiwiTEctQXp1cmUtT2ZmaWNlIDM2NS1BSVAtRElWSVNJT05fVGVjaG5vbG9neSIsIlFHLVByaW50UmVsZWFzZV8yOF9CYWNrdXAiLCJMRy1BenVyZS1PZmZpY2UzNjUtT25lRHJpdmUiLCJBRy1XQURNLUI4MzAxNzE3IiwiVUctSW50dW5lLU9uZURyaXZlIiwiVFMtVkNTLVNCQy1QUkQiLCJZRy1DU00tUGVuYWx0aWVzIiwiUEcxLTM3NDAwIiwiUEc4LUlTRFNFQ0RPQy1TUC1Db250cmlicyIsIkRHMS01OTI2MiIsIlVHLVNFQlVTRVIiLCJPRy1HSUEtVEVDSE5JQ0lBTiIsIlNHLUlOUy1hdGxhc3NpYW4tYXRsYXNzaWFuY29tcGFuaW9uLWVuIiwiRkctQ09OTkVDVE9SLVBST0QtREVGQVVMVC1BWiIsIlVHLUF6dXJlLUFEU3luYyIsIllHLUxJUVVJRElUWS1NR01ULVRTVCIsIkpHMi1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiTEctQXp1cmUtT2ZmaWNlMzY1LU1TVGVhbXMiLCJTRy1JTlMtcm9ja2V0c29mdHdhcmUtYmx1ZXpvbmUtZW4iLCJMRy1BWlVSRS1BenVyZURldk9wcy1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiUUctUHJpbnRSZWxlYXNlXzI4X1BTX0JhY2t1cCIsIkZHLUFQUC1QUk9ELU1TLU9mZmljZTM2NS1PbmVkcml2ZSIsIlBHOC1DSUZfQVBJLUNvbnRyaWJ1dG9ycyIsIlJHLUlOU1RSVUNUSU9OQ0FQVFVSRS1BRE0iLCJZRy1DU00tUGVuYWx0aWVzLVRTVCIsIlNHLUlOUy1uZXRjbGVhbi1wcm9hY3RpdmUtZW4iLCJZRy1JQy1BTy1UU1QiLCJZRy1JQy1TV08tVFNUIiwiUkctOTk4NDctUGVudGllcy1BRE0iLCJVRy1WSVAtQURTeW5jIiwiUkctQ09ORkxVRU5DRS1HRU5FUkFMLVVTUiIsIllHLVNlY3VyaXRpZXMtTWFpbnQiLCJZRy1TbGFjayIsIllHLVNJLVZJRVctVFNUIiwiWUctU0ktVVBEQVRFLVRTVCIsIlNHLUlOUy1tcy1za3lwZWZvcmJ1c2luZXNzLWVuLXBpbG90IiwiUkctQ1NNLVRGQS1BRE0iLCJZRy1DSUYtQ09ORkxVRU5DRSIsIlVHLU9tbmlidXMtU3VwcG9ydEdyb3VwQ29uc29sZSIsIlJBLVByb2QtVXNlci1FbXBsb3llZS1WUE4iLCJZRy1TSS1WSUVXIiwiWUctSW50ZWdyYXRpb25Qb3J0YWwtQ2xlYXJpbmdhbmRTZXR0bGVtZW50IiwiU0ctSU5TLWFncmVzc28tc2ViLW1sLW53c2hvcnRjdXQiLCJTRy1JTlMtc3BsdW5rLXVuaXZlcnNhbGZvcndhcmRlci1lbiIsIlJHLVNlY3VyaXRpZXMtTWFpbnQiLCJTRy1JTlMtbXMtb25lZHJpdmUtZW4iLCJ5Zy10aHBlLXRlc3QiLCJZRy1MSVFVSURJVFktTUdNVCJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzNDk3MmIiLCJzaWQiOiJhMTcyYzc5MC04MTcyLTQ5OWUtYmVhOS1hYWU5ZTZjMTkzM2IifQ.Ab9YXqYJE9KQKzErLmiB8OV5PYrAwCO49Rx9jshdgZ76XUeyRjBVnitAP4XNSI0GWYAlowdtoKNDJzhQhpZcVrDGvmJFjhDBlFe062_68UvlVR0wlGf5fkX3_oKCruE2pWaHdcDbDYwCRsM3nfZIf459SfB1uuQ_9cM_wutK8zJpTE2ewyRWB4YeU4hAkMaXF3b7fs03U6EEsAeVASyJkb8UwX9W3ZFCRH_acJ51uQWuvo4Fq0iOm1LlRHmjihLuYF9F8HDrkM7wH9CZPfLUsPi2YhZ2INqduMSgN99OeQmigUcO7v4K8h5rSJva03FsfmZ-74zx_U5P_F4ScRyBCA",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"challengeAlgorithm": "S256",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"addTokenTo": "header",
+						"client_authentication": "body"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"SettlementTransactionTypeISO\": \"OWNE\",\r\n  \"TransferReasonCode\": \"OWN\",\r\n  \"WithinIsk\": false,\r\n  \"BeneficialOwnership\": true,\r\n  \"PumaChannelCode\": \"PB\",\r\n  \"CustomerReference\": \"S!6776129170\",\r\n  \"TradingDateTime\": null,\r\n  \"UserProfitCenter\": \"1173\",\r\n  \"TransferTypeCode\": \"EXT\",\r\n  \"TransferInstructions\": [\r\n    {\r\n      \"SettlementDate\": \"2020-09-09\",\r\n      \"TradeDate\": \"2020-09-07\",\r\n      \"Isin\": \"SE0001493776\",\r\n      \"InternalIsin\": \"SE0001493776\",\r\n      \"InternalShortName\": \"AARHUSKARL   AK\",\r\n      \"InternalVpTypeCode\": \"AK\",\r\n      \"ClearingInstituteCode\": \"VPC\",\r\n      \"PlaceOfSettlementBIC\": \"VPCSSESS\",\r\n      \"QuantityToTransfer\": \"1\",\r\n      \"QuantityDecimal\": 0,\r\n      \"QuantityTypeISO\": \"UNIT\",\r\n      \"DealPriceRate\": 0,\r\n      \"MarketValueCurrencyCode\": \"SEK\",\r\n      \"MarketValueAmount\": 0,\r\n      \"BaseValueAmount\": 0,\r\n      \"ForeignCurrencyCode\": \"SEK\",\r\n      \"DealPriceDate\": null,\r\n      \"ExchangeRate\": 0,\r\n      \"TransferExternalBookingDelivering\": {\r\n        \"ClearingInstitutionIdReceiving\": \"VPC\",\r\n        \"CustodyAccountFunctionCode\": \"001\",\r\n        \"CustodyAccountNumber\": \"000010470166\",\r\n        \"CustodyAccountTypeCode\": \"001\",\r\n        \"DepaId\": \"01000058379\"\r\n      },\r\n      \"TransferExternalBookingReceiving\": {},\r\n      \"QuantityActual\": \"4619\",\r\n      \"QuantityDeliverble\": \"4251\",\r\n      \"IsDeliverable\": true\r\n    }\r\n  ],\r\n  \"Regulatory\": {\r\n    \"ActingOnBehalfGcn\": [\r\n      {\r\n        \"value\": null,\r\n        \"validationMessage\": null,\r\n        \"visible\": true\r\n      },\r\n      {\r\n        \"value\": null,\r\n        \"validationMessage\": null,\r\n        \"visible\": false\r\n      },\r\n      {\r\n        \"value\": null,\r\n        \"validationMessage\": null,\r\n        \"visible\": false\r\n      }\r\n    ],\r\n    \"OrderReceiptDate\": \"\",\r\n    \"OrderReceiptTime\": \"\",\r\n    \"RegulatoryResponsibles\": [\r\n      {\r\n        \"Gcn\": \"73032739940009\",\r\n        \"ValidationMessage\": \"\",\r\n        \"Invalid\": false,\r\n        \"ResponsibleTypeCode\": \"SD1\"\r\n      },\r\n      {\r\n        \"Gcn\": \"47081845380009\",\r\n        \"ValidationMessage\": \"\",\r\n        \"Invalid\": false,\r\n        \"ResponsibleTypeCode\": \"SD2\"\r\n      },\r\n      {\r\n        \"Gcn\": \"56081163300009\",\r\n        \"ValidationMessage\": \"\",\r\n        \"Invalid\": false,\r\n        \"ResponsibleTypeCode\": \"SD3\"\r\n      }\r\n    ]\r\n  },\r\n  \"DeliveringAccount\": {\r\n    \"CustodyAccountValue\": \"01000058379\",\r\n    \"CustodyAccountOwnerId\": \"55445588760004\",\r\n    \"CustodyAccountOwnerName\": \"FIREBLADE AB, SYS\",\r\n    \"CustodyAccountName\": \"PRIME BROKERAGE\",\r\n    \"CustodyAccountType\": \"FTGNOT\",\r\n    \"CustodyAccountTypeCode\": \"14.0\",\r\n    \"CustodyAccountNaturalPersonId\": \"\",\r\n    \"TransferBookingReasonCode\": \"SKT\",\r\n    \"CustodyAccountOwnerLEI\": \"21380068BIPV2O5T2191\",\r\n    \"CustodyAccountCode\": \"SEN\",\r\n    \"SecuritiesMovementCodeISO\": \"DELI\",\r\n    \"CustodyAccountAdvisoryId\": \"JB\",\r\n    \"CustodyAccountCoOwner\": false,\r\n    \"CustodyAccountIsk\": false,\r\n    \"CustodyAccountTypeOfRegistration\": \"FoRVALTARREG\",\r\n    \"BookingText\": \"Skifte till:        \",\r\n    \"CustodyAccountFunctionCode\": null\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://instructioncapture-tst.sebank.se/compisapi/securities/custody/settlement/v1/instructions"
+			},
+			"response": []
+		},
+		{
+			"name": "mf-service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJyRTRBMWxWUkM0TkQyOXp1QnQ2RS1HaGl4Xy1zOWFpUG5TbVJZZDBuNEVzIn0.eyJleHAiOjE2OTY1MTQyODcsImlhdCI6MTY5NjUxMzk4NywiYXV0aF90aW1lIjoxNjk2NTAwNjcyLCJqdGkiOiIyZDRmYzFhNC0wOTZkLTRlYzAtYWVmMC0yOTgzZGRjOTllNzAiLCJpc3MiOiJodHRwczovL3Nzby5kZXYuc2ViYW5rLnNlL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6WyJTRUIiLCI4NDUxQjg1Ni1EQzk0LTRCQjctOTI2Qy00MkYwRkNCRTdGMkUiXSwic3ViIjoiZjpiMzI1NzJmNC0wZTRlLTQ0ZWQtOTBmMi1kOWQ5Mjk1YzhlODg6UzQ5NzJCIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiODQ1MUI4NTYtREM5NC00QkI3LTkyNkMtNDJGMEZDQkU3RjJFIiwibm9uY2UiOiI3MWJhY2E2Zi01YmJkLTRhZmItODM1My02NWQ0OWM5Njc1MTMiLCJzZXNzaW9uX3N0YXRlIjoiNjEyMDUxYzQtNTExYS00OTFlLWE3ZjktNzU4YzQ5MmEwZWM3Iiwic2NvcGUiOiJvcGVuaWQgZ3JvdXBzIiwic2lkIjoiNjEyMDUxYzQtNTExYS00OTFlLWE3ZjktNzU4YzQ5MmEwZWM3IiwibmJmIjoxNjk2NTEzOTg3LCJwdWJsaWNfY2xpZW50Ijp0cnVlLCJncm91cHMiOlsiUkEtUHJvZC1Vc2VyLUVtcGxveWVlIiwiWUctV0NEVFItVVNFUlMiLCJVRy1BenVyZS1NeUV4cGVuc2VzIiwiVUctWC01MzU5NDEtQUdFTlQiLCJZRy1JQy1TV08iLCJZRy1TSS1VUERBVEUiLCJVRy1DTE9CLVVTUi1UU1QiLCJZRy1DQVBBWS1NQUlOVCIsIk9HLUdJQS1TT0NJQUxORVRXT1JLSU5HIiwiUkctSklSQS1HRU5FUkFMLVVTUiIsIllHLURTRC1HZW5lcmFsQWNjZXNzIiwiVUctQ0FQQVktVklFVy1UU1QiLCJVRy1QRUctVVNSLVBSRCIsIlVHLUdDUC1BRFN5bmMiLCJZRy1WUEMtQUNDVC1JTkZPLVRTVCIsIlNHLUlOUy1taWNyb3NvZnQtc3lzbW9uLTEwLWVuIiwiVUctQ0FQQVktRURJVC1UU1QiLCJVRy1EUkEtSVMtU1RLLUxPS0FMIiwiVUctQ0FQQVktRURJVC1QUkQiLCJVRy1Eb2NrZXJEZXNrdG9wIiwiWUctRkVOSVgyLVVTRVJTLVRTVCIsIlZXUy1BcHAtU0JDLUJhc2VBcHBzIiwiWUctVlBDLUFDQ1QtSU5GTy1NQUlOVCIsIkxHLUF6dXJlLU9mZmljZTM2NS1ZYW1tZXIiLCJZRy1QRUctTUFJTlQiLCJQR1UtMzc0MDAiLCJVRy1QRUctVVNSLVRTVCIsIlVHLUZWVCIsIlNHLUlOUy1zZWItY3N0b29sczIwMTItZW4iLCJZRy1JQy1BTyIsIk9HLUdJQS1NRURJQVNIQVJJTkcyIiwiVUctQ0xPQi1VU1ItUFJEIiwiWUctU0ktTUdNVC1NQUlOVCIsIllHLVZQQy1BQ0NULUlORk8iLCJMRy1BenVyZS1PZmZpY2UgMzY1LUFJUC1ESVZJU0lPTl9UZWNobm9sb2d5IiwiVUctQ0FQQVktVklFVy1QUkQiLCJSQS1Qcm9kLVVzZXItVlBOLUFWIiwiTEctQXp1cmUtT2ZmaWNlMzY1LU9uZURyaXZlIiwiQUctV0FETS1CODMwMTcxNyIsIlVHLVgtNTM1MzY2LUFHRU5UIiwiVUctSW50dW5lLU9uZURyaXZlIiwiWUctQ1NNLVBlbmFsdGllcyIsIlBHMS0zNzQwMCIsIlVBLVByb2QtVXNlci1TQkMiLCJQRzgtSVNEU0VDRE9DLVNQLUNvbnRyaWJzIiwiREcxLTU5MjYyIiwiVUctU0VCVVNFUiIsIk9HLUdJQS1URUNITklDSUFOIiwiU0ctSU5TLWF0bGFzc2lhbi1hdGxhc3NpYW5jb21wYW5pb24tZW4iLCJGRy1DT05ORUNUT1ItUFJPRC1ERUZBVUxULUFaIiwiWUctQ0xPQi1NQUlOVCIsIlVHLUF6dXJlLUFEU3luYyIsIllHLUxJUVVJRElUWS1NR01ULVRTVCIsIkpHMi1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiTEctQXp1cmUtT2ZmaWNlMzY1LU1TVGVhbXMiLCJZRy1EM1MtRnVuZHNWaWV3LVRlc3QiLCJTRy1JTlMtcm9ja2V0c29mdHdhcmUtYmx1ZXpvbmUtZW4iLCJMRy1BWlVSRS1BenVyZURldk9wcy1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiWUctUGVuYWx0aWVzLURldmVsb3BlciIsIllHLVdTUy1Qcm94eSIsIkZHLUFQUC1QUk9ELU1TLU9mZmljZTM2NS1PbmVkcml2ZSIsIlBHOC1DSUYtQWRtaW5zIiwiUEc4LUNJRl9BUEktQ29udHJpYnV0b3JzIiwiUkctSU5TVFJVQ1RJT05DQVBUVVJFLUFETSIsIllHLUNTTS1QZW5hbHRpZXMtVFNUIiwiVUctQ0FQQVktQVBQUi1UU1QiLCJZRy1JQy1BTy1UU1QiLCJZRy1JQy1TV08tVFNUIiwiTEctQVpVUkUtQXp1cmVEZXZPcHMtVmlzdWFsU3R1ZGlvUHJvZmVzc2lvbmFsIiwiUkctOTk4NDctUGVudGllcy1BRE0iLCJZRy1QRU5BTFRJRVMtTUFJTlQiLCJSRy1DT05GTFVFTkNFLUdFTkVSQUwtVVNSIiwiWUctU2VjdXJpdGllcy1NYWludCIsIlBHOC1TZWN1cml0aWVzLUNvbnRyaWJ1dG9ycyIsIlBHOC1DU00tQ29udHJpYnV0b3JzIiwiWUctU2xhY2siLCJWV1MtQUctVXNlcnMtU0JDLVBSRC1JbnRlcm5hbCIsIllHLVNJLVZJRVctVFNUIiwiWUctU0ktVVBEQVRFLVRTVCIsIlJHLUNTTS1URkEtQURNIiwiWUctQ0lGLUNPTkZMVUVOQ0UiLCJVRy1PbW5pYnVzLVN1cHBvcnRHcm91cENvbnNvbGUiLCJZRy1MSVFVSURJVFktTUdNVC1NQUlOVCIsIlVHLUNBUEFZLUFQUFItUFJEIiwiUkEtUHJvZC1Vc2VyLUVtcGxveWVlLVZQTiIsIlBHOC1DSUYtQ29udHJpYnV0b3JzIiwiWUctU0ktVklFVyIsIkxHLUF6dXJlLU9mZmljZTM2NS1FNS1TZWN1cml0eSIsIllHLUludGVncmF0aW9uUG9ydGFsLUNsZWFyaW5nYW5kU2V0dGxlbWVudCIsIlNHLUlOUy1hZ3Jlc3NvLXNlYi1tbC1ud3Nob3J0Y3V0IiwiU0ctSU5TLXNwbHVuay11bml2ZXJzYWxmb3J3YXJkZXItZW4iLCJTRy1JTlMtbXMtb25lZHJpdmUtZW4iLCJ5Zy10aHBlLXRlc3QiLCJZRy1MSVFVSURJVFktTUdNVCIsIlVHLWdpdGh1Yi1hY2NvdW50cyJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzNDk3MmIifQ.iTLGZcsjbE7YjC30q-BywCrtn0uLOzt8mCZcXvJBaUgb4LwvQqFOZ8oY0kGJZJ9sP40N3605ceHXH1ZG7J2WlgSCSsQaRpfhQBShiJokNKJeeaTYHbtt6LlnZ9CRsfI-MOlED5idJHG7xoyAfhF6EJyO6NeiWF5vlzhQdXMDZihDGMdYO2lE8wCDlZeWNhPNP4Q0GWd2lK_zdw_o8VcCfYV2_X-1FtWGofg-bAcKDC6n_Aif9HshcPu4n2OldXOIejRsMD34E9KH26k53w6EEaVCrK6reyo-ikXkXLPDCxxx-AtgtKlFH6KzmwLdTwVvDZnP1m1PWFSFzgPN54XveQ"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserCredentials\": {\r\n        \"Password\": \"Sb905264\",\r\n        \"UserId\": \"s4972b\"\r\n    },\r\n    \"VODB\": {\r\n        \"SIMWT05V\": {\r\n            \"ROW_ID\": 0,\r\n            \"DEPA_ID_DEL\": \"01000089940\",\r\n            \"DEPA_ID_REC\": \"01000091295\",\r\n            \"WINDOWS_GRP_ID\": \"YG-IC-SWO-TST\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": "https://sebcswsm-iis-dev.sebank.se:25543/SAML/Factory/inxcapture/inxcaptureget01account01/Post"
+			},
+			"response": []
+		},
+		{
+			"name": "mf-service2",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"password": "Sb91905238",
+						"username": "s4972b",
+						"accessTokenUrl": "https://sso.dev.sebank.se/auth/realms/master/protocol/openid-connect/token",
+						"clientId": "8451B856-DC94-4BB7-926C-42F0FCBE7F2E",
+						"challengeAlgorithm": "S256",
+						"state": "78c018a4-2018-4deb-8251-e87fa4ed8b21",
+						"scope": "openid",
+						"redirect_uri": "http://localhost",
+						"grant_type": "password_credentials",
+						"clientSecret": "26ae3d0d-6bcb-4370-9c5a-fdc529bda192",
+						"authUrl": "https://sso-auth.cumulus.sebank.se/auth/realms/master/protocol/openid-connect/auth",
+						"addTokenTo": "header",
+						"client_authentication": "body",
+						"tokenType": "bearer"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserCredentials\": {},\r\n    \"VODB\": {\r\n\t\t\"VFXWL651\": [{\r\n\t\t\t\"fin_institut_namn\":\"\",\r\n\t\t\t\"kornings_typ\":\"\",\r\n\t\t\t\"bokn_kto_nr\":\"\",\r\n\t\t\t\"saldo_bokn_kto\":0\r\n\t\t}],\r\n        \"DBZV170\": {}\r\n    }\r\n}"
+				},
+				"url": "https://sebcswsm-iis-tst.sebank.se:27543/SAML/Factory/fomexa/FomexaList01Sweepings01/post"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "tok",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJyRTRBMWxWUkM0TkQyOXp1QnQ2RS1HaGl4Xy1zOWFpUG5TbVJZZDBuNEVzIn0.eyJleHAiOjE2MjY2OTA5NjksImlhdCI6MTYyNjY5MDY2OSwianRpIjoiNTY2ODliZmQtYWUzMi00ZjcxLWJmNDctOWZkODMyOTI4MmEyIiwiaXNzIjoiaHR0cHM6Ly9zc28uZGV2LnNlYmFuay5zZS9hdXRoL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOlsiU0VCIiwiODQ1MUI4NTYtREM5NC00QkI3LTkyNkMtNDJGMEZDQkU3RjJFIl0sInN1YiI6ImY6YjMyNTcyZjQtMGU0ZS00NGVkLTkwZjItZDlkOTI5NWM4ZTg4OlM0OTcyQiIsInR5cCI6IkJlYXJlciIsImF6cCI6Ijg0NTFCODU2LURDOTQtNEJCNy05MjZDLTQyRjBGQ0JFN0YyRSIsInNlc3Npb25fc3RhdGUiOiJmNjZiMzU3MC1hNTZlLTQ4YjktYWEyMS1kMWMyMjcwMjQ4MzciLCJhY3IiOiIxIiwic2NvcGUiOiJvcGVuaWQgZ3JvdXBzIiwibmJmIjoxNjI2NjkwNjY5LCJncm91cHMiOlsiUkEtUHJvZC1Vc2VyLUVtcGxveWVlIiwiWUctV0NEVFItVVNFUlMiLCJZRy1JQy1TV08iLCJZRy1TSS1VUERBVEUiLCJRRy1QcmludFJlbGVhc2VfMjhfUFMiLCJSRy1KSVJBLUdFTkVSQUwtVVNSIiwiWUctRFNELUdlbmVyYWxBY2Nlc3MiLCJZRy1WUEMtQUNDVC1JTkZPLVRTVCIsIlNHLUlOUy1taWNyb3NvZnQtc3lzbW9uLTEwLWVuIiwiVUctRFJBLUlTLVNUSy1MT0tBTCIsIllHLUZFTklYMi1VU0VSUy1UU1QiLCJQR1UtMzc0MDAiLCJGRy1ERUZBVUxULVBST0QtVVNFUlMiLCJVRy1GVlQiLCJTRy1JTlMtc2ViLWNzdG9vbHMyMDEyLWVuIiwiWUctSUMtQU8iLCJZRy1WUEMtQUNDVC1JTkZPIiwiTEctQXp1cmUtT2ZmaWNlIDM2NS1BSVAtRElWSVNJT05fVGVjaG5vbG9neSIsIlFHLVByaW50UmVsZWFzZV8yOF9CYWNrdXAiLCJMRy1BenVyZS1PZmZpY2UzNjUtT25lRHJpdmUiLCJBRy1XQURNLUI4MzAxNzE3IiwiVUctSW50dW5lLU9uZURyaXZlIiwiVFMtVkNTLVNCQy1QUkQiLCJZRy1DU00tUGVuYWx0aWVzIiwiUEcxLTM3NDAwIiwiUEc4LUlTRFNFQ0RPQy1TUC1Db250cmlicyIsIkRHMS01OTI2MiIsIlVHLVNFQlVTRVIiLCJPRy1HSUEtVEVDSE5JQ0lBTiIsIlNHLUlOUy1hdGxhc3NpYW4tYXRsYXNzaWFuY29tcGFuaW9uLWVuIiwiRkctQ09OTkVDVE9SLVBST0QtREVGQVVMVC1BWiIsIlVHLUF6dXJlLUFEU3luYyIsIllHLUxJUVVJRElUWS1NR01ULVRTVCIsIkpHMi1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiTEctQXp1cmUtT2ZmaWNlMzY1LU1TVGVhbXMiLCJTRy1JTlMtcm9ja2V0c29mdHdhcmUtYmx1ZXpvbmUtZW4iLCJMRy1BWlVSRS1BenVyZURldk9wcy1WaXN1YWxTdHVkaW9FbnRlcnByaXNlIiwiUUctUHJpbnRSZWxlYXNlXzI4X1BTX0JhY2t1cCIsIkZHLUFQUC1QUk9ELU1TLU9mZmljZTM2NS1PbmVkcml2ZSIsIlBHOC1DSUZfQVBJLUNvbnRyaWJ1dG9ycyIsIlJHLUlOU1RSVUNUSU9OQ0FQVFVSRS1BRE0iLCJZRy1DU00tUGVuYWx0aWVzLVRTVCIsIlNHLUlOUy1uZXRjbGVhbi1wcm9hY3RpdmUtZW4iLCJZRy1JQy1BTy1UU1QiLCJZRy1JQy1TV08tVFNUIiwiUkctOTk4NDctUGVudGllcy1BRE0iLCJVRy1WSVAtQURTeW5jIiwiUkctQ09ORkxVRU5DRS1HRU5FUkFMLVVTUiIsIllHLVNlY3VyaXRpZXMtTWFpbnQiLCJZRy1TbGFjayIsIllHLVNJLVZJRVctVFNUIiwiWUctU0ktVVBEQVRFLVRTVCIsIlNHLUlOUy1tcy1za3lwZWZvcmJ1c2luZXNzLWVuLXBpbG90IiwiUkctQ1NNLVRGQS1BRE0iLCJZRy1DSUYtQ09ORkxVRU5DRSIsIlVHLU9tbmlidXMtU3VwcG9ydEdyb3VwQ29uc29sZSIsIlJBLVByb2QtVXNlci1FbXBsb3llZS1WUE4iLCJZRy1TSS1WSUVXIiwiWUctSW50ZWdyYXRpb25Qb3J0YWwtQ2xlYXJpbmdhbmRTZXR0bGVtZW50IiwiU0ctSU5TLWFncmVzc28tc2ViLW1sLW53c2hvcnRjdXQiLCJTRy1JTlMtc3BsdW5rLXVuaXZlcnNhbGZvcndhcmRlci1lbiIsIlJHLVNlY3VyaXRpZXMtTWFpbnQiLCJTRy1JTlMtbXMtb25lZHJpdmUtZW4iLCJ5Zy10aHBlLXRlc3QiLCJZRy1MSVFVSURJVFktTUdNVCJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzNDk3MmIiLCJzaWQiOiJmNjZiMzU3MC1hNTZlLTQ4YjktYWEyMS1kMWMyMjcwMjQ4MzcifQ.FDHTsBmnMCv4DGh6NS-vzlwz5PwCSeFkNl67Nk2hAB2sI3USvFDNhhR8CyZBEAhCkrrYhK48EeK2bVeYpyewbwio2TUR0KuWi5BVJxCgG8kSAcHXa5d-nt8Rvmc80RazkTBpS_90BSzAkn9kXozxaREp9Fl9V_IDFa5DqQlThEz8BKDcpvkS4GnYBGx0V23RMQOwT1XWgtXyPW--ujqPp8CG30Dgh46vITV9C44Z7o3RfRokcM2jS8-gDcI4_sigz9XzVScgthmW9ICIW776q4Nl8TW4nbV1scO2jb30eIQ532w7gJrTO6GQy8BpcFoH-f18BJAAh8zbGG3DpYHa4g"
+		}
+	]
+}
